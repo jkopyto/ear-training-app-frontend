@@ -1,17 +1,36 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-// import { RouteBuilder } from './routes'
+import TaskCard from '../TaskCard'
+import { Elevation } from '@blueprintjs/core'
+import DashboardContentWrapper from './DashboardContentWrapper'
 
 const Dashboard = () => (
-    <div className= "i-container">
-        <Router>
-            <Switch>
-                <Route
-                    exact
-                    path={`/test`}
-                    render={() => null} />
-            </Switch>
-        </Router>        
+    <div className= "m-grid m-grid__item--center i-container">
+        <DashboardContentWrapper>
+            <TaskCard
+                title="Pierwsze zadanie"
+                description={"Rozpocznij swoje pierwsze zadanie"}
+                elevationLevel={Elevation.THREE} />
+            <TaskCard
+                title="Pierwsze zadanie"
+                description={"Rozpocznij swoje pierwsze zadanie"}
+                elevationLevel={Elevation.THREE} />
+            <TaskCard
+                title="Pierwsze zadanie"
+                description={"Rozpocznij swoje pierwsze zadanie"}
+                elevationLevel={Elevation.THREE} />
+            <TaskCard
+                title="Pierwsze zadanie"
+                description={"Rozpocznij swoje pierwsze zadanie"}
+                elevationLevel={Elevation.THREE} />
+            <TaskCard
+                title="Pierwsze zadanie"
+                description={"Rozpocznij swoje pierwsze zadanie"}
+                elevationLevel={Elevation.THREE} />
+            <TaskCard
+                title="Pierwsze zadanie"
+                description={"Rozpocznij swoje pierwsze zadanie"}
+                elevationLevel={Elevation.THREE} />
+        </DashboardContentWrapper>
     </div>
 )
 
