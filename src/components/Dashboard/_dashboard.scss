@@ -1,0 +1,16 @@
+$background-path: '../../images/background.png';
+
+@mixin background($imgpath, $position:0 0, $repeat: no-repeat, $size: contain) {
+    background: {
+        image: url($imgpath);
+        position: $position;
+        repeat: $repeat;
+        size: $size;
+    }
+}
+
+.i-container {
+    width: 100vw;
+    height: 100vh;
+    @include background($background-path, 0 0, repeat);
+}
