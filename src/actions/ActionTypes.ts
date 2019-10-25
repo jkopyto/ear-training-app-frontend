@@ -1,0 +1,2 @@
+export const HIDE_SUBHEADER = "HIDE_SUBHEADER"
+export const SHOW_SUBHEADER = "SHOW_SUBHEADER"
