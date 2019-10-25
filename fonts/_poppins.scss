@@ -1,0 +1,76 @@
+@import "variables";
+
+@mixin font-face--poppins-300() {
+  @font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 300;
+    font-display: $default-font-display;
+    src: local("Poppins Light"), local("Poppins-Light"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiByp8kv8JHgFVrLDz8Z1xlFQ.woff2") format("woff2"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiByp8kv8JHgFVrLDz8Z1xlEw.woff") format("woff"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiByp8kv8JHgFVrLDz8Z1xlEQ.eot") format("embedded-opentype"),
+        url("https://fonts.gstatic.com/l/font?kit=pxiByp8kv8JHgFVrLDz8Z1xlEg&skey=4aabc5055a39e031&v=v6#Poppins") format("svg"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiByp8kv8JHgFVrLDz8Z1xlEA.ttf ") format("truetype");
+  }
+}
+
+@mixin font-face--poppins-400() {
+  @font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-display: $default-font-display;
+    src: local("Poppins Regular"), local("Poppins-Regular"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiEyp8kv8JHgFVrJJfecg.woff2") format("woff2"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiEyp8kv8JHgFVrJJfedA.woff") format("woff"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiEyp8kv8JHgFVrJJfedg.eot") format("embedded-opentype"),
+        url("https://fonts.gstatic.com/l/font?kit=pxiEyp8kv8JHgFVrJJfedQ&skey=87759fb096548f6d&v=v6#Poppins") format("svg"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiEyp8kv8JHgFVrJJfedw.ttf") format("truetype");
+  }
+}
+
+@mixin font-face--poppins-500() {
+  @font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-display: $default-font-display;
+    src: local("Poppins Medium"), local("Poppins-Medium"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2") format("woff2"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiByp8kv8JHgFVrLGT9Z1xlEw.woff") format("woff"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiByp8kv8JHgFVrLGT9Z1xlEQ.eot") format("embedded-opentype"),
+        url("https://fonts.gstatic.com/l/font?kit=pxiByp8kv8JHgFVrLGT9Z1xlEg&skey=d4526a9b64c21b87&v=v6#Poppins") format("svg"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiByp8kv8JHgFVrLGT9Z1xlEA.ttf") format("truetype");
+  }
+}
+
+@mixin font-face--poppins-600() {
+  @font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-display: $default-font-display;
+    src: local("Poppins SemiBold"), local("Poppins-SemiBold"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2") format("woff2"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiByp8kv8JHgFVrLEj6Z1xlEw.woff") format("woff"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiByp8kv8JHgFVrLEj6Z1xlEQ.eot") format("embedded-opentype"),
+        url("https://fonts.gstatic.com/l/font?kit=pxiByp8kv8JHgFVrLEj6Z1xlEg&skey=ce7ef9d62ca89319&v=v6#Poppins") format("svg"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiByp8kv8JHgFVrLEj6Z1xlEA.ttf") format("truetype");
+  }
+}
+
+@mixin font-face--poppins-700() {
+  @font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-display: $default-font-display;
+    src: local("Poppins Bold"), local("Poppins-Bold"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2") format("woff2"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiByp8kv8JHgFVrLCz7Z1xlEw.woff") format("woff"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiByp8kv8JHgFVrLCz7Z1xlEQ.eot") format("embedded-opentype"),
+        url("https://fonts.gstatic.com/l/font?kit=pxiByp8kv8JHgFVrLCz7Z1xlEg&skey=cea76fe63715a67a&v=v6#Poppins") format("svg"),
+        url("https://fonts.gstatic.com/s/poppins/v6/pxiByp8kv8JHgFVrLCz7Z1xlEA.ttf") format("truetype");
+  }
+}

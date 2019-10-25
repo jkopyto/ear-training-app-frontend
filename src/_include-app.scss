@@ -1,0 +1,196 @@
+@import 'views/grid';
+@import 'components/Dashboard/dashboard';
+@import 'components/TaskCard/task-card';
+@import "~@blueprintjs/core/lib/css/blueprint.css";
+@import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
+
+//== Roboto font
+@import 'fonts/roboto';
+@include font-face--roboto-300();
+@include font-face--roboto-400();
+@include font-face--roboto-500();
+@include font-face--roboto-700();
+
+//== Poppins font
+@import 'fonts/poppins';
+@include font-face--poppins-300();
+@include font-face--poppins-400();
+@include font-face--poppins-500();
+@include font-face--poppins-600();
+@include font-face--poppins-700();
+
+$i--font-weights: (
+    thin:  200,     // access to this font weight value calling get-font-weight function as get-font-weight(this) in SASS code
+    normal: 300,    // access to this font weight value calling get-font-weight function as get-font-weight(normal) in SASS code
+    bold: 400,      // access to this font weight value calling get-font-weight function as get-font-weight(bold) in SASS code
+    bolder: 500,    // access to this font weight value calling get-font-weight function as get-font-weight(bolder) in SASS code
+    boldest: 600,   // access to this font weight value calling get-font-weight function as get-font-weight(boldest) in SASS code
+    boldest2: 700   // access to this font weight value calling get-font-weight function as get-font-weight(boldest2) in SASS code
+)!default;
+
+// $m--link-font: (
+//     default: (
+//         color: (
+//             light: get-brand-color(), 
+//             dark: get-brand-color()
+//         )
+//     ),
+
+//     hover: (
+//         color: (
+//             light: get-brand-color('+'), 
+//             dark: get-brand-color('+')
+//         )
+//     )    
+// )!default;
+
+//== Font families
+$m--font-families: (
+    regular: ("Poppins", sans-serif),
+    heading: ("Roboto", sans-serif)
+)!default;
+
+$i--font-families: (
+    regular: 'Roboto',  
+    heading: 'Roboto'
+)!default;
+
+$i--root-font: (
+    size: (
+        desktop: 18px
+    ), 
+    weight: 300, 
+    color: (
+        light: #333333, 
+        dark: #efefef
+    )
+)!default;
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+html {
+    font-family: sans-serif;
+    text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    direction: ltr;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+
+    font-size: array-get($i--root-font, size, desktop);
+    font-weight: array-get($i--root-font, weight);
+    font-family: #{array-get($i--font-families, regular)};
+
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    a:active,
+    a:focus {
+        text-decoration: none !important;
+    }
+
+    a,
+    button {
+        outline: none !important;
+    }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+}
