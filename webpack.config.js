@@ -12,7 +12,14 @@ module.exports = {
     module: {
         rules: [{
                 test: /\.ts(x?)$/,
-                exclude: /node_modules/,
+                exclude: /node_modules/, 
+                use: [{
+                    loader: "ts-loader"
+                }]
+            },
+            {
+                test: /\.ts(x?)$/,
+                exclude: /node_modules\/(?!react-intl|intl-messageformat|intl-messageformat-parser)/,
                 use: [{
                     loader: "ts-loader"
                 }]
