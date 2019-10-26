@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import en from 'react-intl/locale-data/en'
 import pl from 'react-intl/locale-data/pl'
 import { IntlProvider, addLocaleData } from "react-intl"
-import messages from 'locales/messages'
+import messages from 'intl/locales/messages'
 
 addLocaleData([...en,...pl])
 
