@@ -1,6 +1,7 @@
 @import 'views/grid';
 @import 'components/Dashboard/dashboard';
 @import 'components/TaskCard/task-card';
+@import 'components/IntervalExcersise/interval-excersise';
 @import "~@blueprintjs/core/lib/css/blueprint.css";
 @import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
 
@@ -28,23 +29,6 @@ $i--font-weights: (
     boldest2: 700   // access to this font weight value calling get-font-weight function as get-font-weight(boldest2) in SASS code
 )!default;
 
-// $m--link-font: (
-//     default: (
-//         color: (
-//             light: get-brand-color(), 
-//             dark: get-brand-color()
-//         )
-//     ),
-
-//     hover: (
-//         color: (
-//             light: get-brand-color('+'), 
-//             dark: get-brand-color('+')
-//         )
-//     )    
-// )!default;
-
-//== Font families
 $m--font-families: (
     regular: ("Poppins", sans-serif),
     heading: ("Roboto", sans-serif)
@@ -193,4 +177,8 @@ body {
     display: flex;
     flex-direction: column;
     scroll-behavior: smooth;
+}
+
+* {
+    background: transparent;
 }
