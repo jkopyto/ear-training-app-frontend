@@ -8,7 +8,6 @@ class PlayInstrument extends React.Component {
     state = {
         repeats: 0
     }
-   
 
     playInstrument() {
         const {
