@@ -22,6 +22,7 @@ export default {
         'major-sixth':'Seksta Wielka',
         'minor-seventh':'Septyma Mała',
         'major-seventh':'Septyma Wielka',
-        'octave':'Oktawa'
+        'octave':'Oktawa',
+        'repeats-left':'Pozostało powtórzeń: {left}'
     }
 };

@@ -5,6 +5,7 @@ import {ActionType} from 'src/actions/ActionInterfaces'
 import { changeLang } from 'src/actions'
 import clefLogo from 'src/images/icon.png'
 import ReactFlagsSelect from 'react-flags-select'
+import { Link } from 'react-router-dom'
 
 type Props = {
     lang: string
@@ -13,9 +14,11 @@ type Props = {
 const Header = ({lang, changeLang}: Props) => (
     <div className= "m-grid m-grid__item m-grid__item--top i-header">
         <div className= "m-grid m-grid__item--center m-grid--ver m-grid__item i-header__content">
-            <div className = "m-grid m-grid__item i-header__logo--wrapper">
-                <img src={clefLogo} alt="" className = "m-grid__item i-header__logo"/>
-            </div>
+                <Link
+                    to='/'
+                    className="m-grid m-grid__item i-header__logo--wrapper">
+                    <img src={clefLogo} alt="" className="m-grid__item i-header__logo" />
+                </Link>
             <div className="m-grid m-grid--hor m-grid__item--center m-grid__item i-header__lang-select">
                 <ReactFlagsSelect
                     countries={["PL", "GB"]}

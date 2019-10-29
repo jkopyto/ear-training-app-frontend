@@ -2,6 +2,7 @@ import React from 'react'
 import { getNote } from './getNote'
 import MIDISounds from 'midi-sounds-react'
 import Button from 'src/components/Button'
+import { FormattedMessage } from 'react-intl'
 
 
 class PlayInstrument extends React.Component {
@@ -31,7 +32,10 @@ class PlayInstrument extends React.Component {
         return (
             <>
              <Button onClick={this.playInstrument.bind(this)} disabled={this.state.repeats === numberOfRepeats}>PLAY</Button>
-            <b>{`Pozostało ${numberOfRepeats-this.state.repeats} powtórzeń`}</b>
+            <FormattedMessage
+                id="repeats-left"
+                defaultMessage={`Repeats left: {left}`}
+                values={{left: numberOfRepeats-this.state.repeats}} />
             <MIDISounds 
                 ref={(ref)=> (this.midiSounds = ref)} 
                 appleElementName="root" 
