@@ -1,9 +1,24 @@
 .i-interval-wrapper {
     background: white;
     border:1px black;
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 20px;
     box-shadow: 0px 0px 46px -13px rgba(0, 0, 0, 0.75);
+
+    .i-interval__score {
+        >svg {
+            width: 270px;
+        }
+    }
+
+    .i-interval-answers {
+        display: grid;
+        grid-template-rows: repeat(2,1fr);
+        grid-template-columns: repeat(2,1fr);
+        column-gap: 20px;
+        row-gap: 20px;
+        padding-bottom: 20px;
+    }
 
     .MIDISounds {
         display: none;

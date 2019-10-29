@@ -1,18 +1,22 @@
 import React from 'react'
 import Vex from 'vexflow'
 import MIDISounds from 'midi-sounds-react'
-import Button from 'components/Button'
+import Button from 'src/components/Button'
 import { getNote } from './getNote'
 import IntervalExcersiseWrapper from './IntervalExcersiseWrapper'
+import AnswerButtons from './AnswerButtons'
 
 class IntervalExcersise extends React.Component {
+    state = {
+        repeats: 0
+    }
    
     componentDidMount(){
         const VF = Vex.Flow
         var vf = new VF.Factory({
             renderer: {
                 elementId: 'score',
-                height: 300
+                height: 250
             }
         })
         const score = vf.EasyScore()
@@ -35,29 +39,21 @@ class IntervalExcersise extends React.Component {
          
 
         // measure 1
-        var system=makeSystem(250)
+        var system=makeSystem(140)
         system.addStave({
             voices: [
-                score.voice(score.notes('C#5/h,C#5/h', {
+                score.voice(score.notes('C#4/w', {
                     clef: 'treble',
                     stem: 'up'
-                })),
-                score.voice(score.notes('C#4/h,C#4/h', {
-                    clef: 'treble',                    
-                    stem: 'down'
                 }))
             ]
         }).addClef('treble').addTimeSignature('4/4') 
 
         system.addStave({
             voices: [
-                score.voice(score.notes('C#3/h,C#3/h', {
+                score.voice(score.notes('C3/w/r', {
                     clef: 'bass',
                     stem: 'up'
-                })),
-                score.voice(score.notes('C#2/h,C#2/h', {
-                    clef: 'bass',
-                    stem: 'down'
                 }))
             ]
         }).addClef('bass').addTimeSignature('4/4')
@@ -66,28 +62,20 @@ class IntervalExcersise extends React.Component {
         system.addConnector('singleLeft')
 
         //measure 2
-        system=makeSystem(220)
+        system=makeSystem(100)
          system.addStave({
              voices: [
-                 score.voice(score.notes('C#5/h,C#5/h', {
+                 score.voice(score.notes('D4/w', {
                      clef: 'treble',
                      stem: 'up'
-                 })),
-                 score.voice(score.notes('C#4/h,C#4/h', {
-                     clef: 'treble',
-                     stem: 'down'
                  }))
              ]
          })
         system.addStave({
             voices: [
-                score.voice(score.notes('C#3/h,C#3/h', {
+                score.voice(score.notes('C3/w/r', {
                     clef: 'bass',
                     stem: 'up'
-                })),
-                score.voice(score.notes('C#2/h,C#2/h', {
-                    clef: 'bass',
-                    stem: 'down'
                 }))
             ]
         })
@@ -97,21 +85,29 @@ class IntervalExcersise extends React.Component {
     }
 
     playInstrument() {
+        this.setState({
+            repeats: this.state.repeats+1
+        })
         const contextTime = this.midiSounds.contextTime()
         this.midiSounds.setInstrumentVolume(3, .3)
         this.midiSounds.playChordAt(contextTime, 3, [getNote("C#4")], .7)
-        this.midiSounds.playChordAt(contextTime+.7, 3, [getNote("D#4")], .7)
+        this.midiSounds.playChordAt(contextTime+.7, 3, [getNote("D4")], .7)
     }
 
     render(){
         return (
             <IntervalExcersiseWrapper>
-                <div id="score" className="m-grid__item" />
-                <Button onClick={this.playInstrument.bind(this)}>PLAY</Button>
+                <div id="score" className="m-grid__item i-interval__score" />
+
+                <AnswerButtons />
+
+                <Button onClick={this.playInstrument.bind(this)} disabled={this.state.repeats === 6}>PLAY</Button>
+                <b>{`Pozostało ${6-this.state.repeats} powtórzeń`}</b>
                 <MIDISounds 
                     ref={(ref)=> (this.midiSounds = ref)} 
                     appleElementName="root" 
                     instruments={[3]} />
+                
             </IntervalExcersiseWrapper>
         )
     }

@@ -10,6 +10,18 @@ export default {
         'homepage.subscribeHeader': 'coś tam coś',
         'user.hello': 'jak sie masz',
         'user.signIn': 'dziendobry',
-        'try': 'probuje'
+        'try': 'probuje',
+        'minor-second':'Sekunda Mała',
+        'major-second':'Sekunda Wielka',
+        'minor-third':'Tercja Mała',
+        'major-third':'Tercja Wielka',
+        'fourth':'Kwarta',
+        'tritone':'Tryton',
+        'fifth':'Kwinta',
+        'minor-sixth':'Seksta Mała',
+        'major-sixth':'Seksta Wielka',
+        'minor-seventh':'Septyma Mała',
+        'major-seventh':'Septyma Wielka',
+        'octave':'Oktawa'
     }
 };

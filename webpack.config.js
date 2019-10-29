@@ -42,6 +42,16 @@ module.exports = {
                     'sass-loader',
                 ],
             },
+            {
+                test: /\.(png|jp(e*)g|svg)$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8000, // Convert images < 8kb to base64 strings
+                        name: 'images/[hash]-[name].[ext]'
+                    }
+                }]
+            },
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             {
                 enforce: "pre",
