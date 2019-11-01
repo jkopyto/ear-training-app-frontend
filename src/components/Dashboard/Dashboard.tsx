@@ -11,7 +11,6 @@ const Dashboard = ({ match }: RouteComponentProps) => (
     <div className= "m-grid i-dashboard-container">
         <Header />
         <div className= "m-grid m-grid__item--center m-grid--hor i-dashboard-content">
-            
             { match.isExact ? 
                 <DashboardContentWrapper>
                     <TaskCard

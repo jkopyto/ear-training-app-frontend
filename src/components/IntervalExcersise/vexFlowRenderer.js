@@ -1,7 +1,7 @@
 import Vex from 'vexflow'
 
 
-const vexFlowRenderer = () => {
+const vexFlowRenderer = (notes, displayStyle, answeredQuestion) => {
     const VF = Vex.Flow
     var vf = new VF.Factory({
         renderer: {

@@ -2,18 +2,24 @@ import React from 'react'
 import intervalAnswers from 'src/util/intervalAnswers'
 import { injectIntl, InjectedIntl } from 'react-intl'
 import Button from 'src/components/Button'
+import { Answers, answersArray } from './answerType'
+import {getAnswers} from './getAnswers'
 
 type Props = {
     intl: InjectedIntl
+    rightAnswer: Answers
 }
 
-const AnswerButtons = ({intl}: Props) => (
+const AnswerButtons = ({ intl, rightAnswer}: Props) => {
+    const answers = getAnswers(rightAnswer)
+    return (
     <div className = "m-grid__item i-interval-answers">
-        <Button>{intl.formatMessage(intervalAnswers.minorSecond)}</Button>
-        <Button>{intl.formatMessage(intervalAnswers.octave)}</Button>
-        <Button>{intl.formatMessage(intervalAnswers.majordThird)}</Button>
-        <Button>{intl.formatMessage(intervalAnswers.fifth)}</Button>
+        {
+            answers.map((answer) => (
+                <Button>{intl.formatMessage(intervalAnswers[answer])}</Button>
+            ))
+        }
     </div>
-)
+)}
 
 export default injectIntl(AnswerButtons)

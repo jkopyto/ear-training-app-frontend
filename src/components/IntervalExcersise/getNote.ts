@@ -109,7 +109,7 @@ export const sounds = {
 
 export const getNote = (note: NoteType) => sounds[note]
 
-type NoteType = 
+export type NoteType = 
 | "C1"
 | "C#1"
 | "Db1"

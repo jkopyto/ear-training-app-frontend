@@ -31,15 +31,15 @@ class PlayInstrument extends React.Component {
         } = this.props
         return (
             <>
-             <Button onClick={this.playInstrument.bind(this)} disabled={this.state.repeats === numberOfRepeats}>PLAY</Button>
-            <FormattedMessage
-                id="repeats-left"
-                defaultMessage={`Repeats left: {left}`}
-                values={{left: numberOfRepeats-this.state.repeats}} />
-            <MIDISounds 
-                ref={(ref)=> (this.midiSounds = ref)} 
-                appleElementName="root" 
-                instruments={[3]} />
+                <Button onClick={this.playInstrument.bind(this)} disabled={this.state.repeats === numberOfRepeats}>PLAY</Button>
+                <FormattedMessage
+                    id="repeats-left"
+                    defaultMessage={`Repeats left: {left}`}
+                    values={{left: numberOfRepeats-this.state.repeats}} />
+                <MIDISounds 
+                    ref={(ref)=> (this.midiSounds = ref)} 
+                    appleElementName="root" 
+                    instruments={[3]} />
             </>
         )
     }

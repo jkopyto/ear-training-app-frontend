@@ -13,7 +13,7 @@ const messages = defineMessages({
         id: "minor-third",
         defaultMessage: "Minor Third"
     },
-    majordThird: {
+    majorThird: {
         id: "major-third",
         defaultMessage: "Major Third"
     },
