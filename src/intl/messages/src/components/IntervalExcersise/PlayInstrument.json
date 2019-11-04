@@ -1,0 +1,10 @@
+[
+  {
+    "id": "play",
+    "defaultMessage": "Play"
+  },
+  {
+    "id": "repeats-left",
+    "defaultMessage": "Repeats left: {left}"
+  }
+]

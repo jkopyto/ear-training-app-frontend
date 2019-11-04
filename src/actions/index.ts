@@ -1,9 +1,8 @@
 import * as ActionTypes from "./ActionTypes"
 import { ActionType } from "./ActionInterfaces"
+import { LangType } from 'src/components/LanguageProvider/LanguageProvider'
 
-export const hideSubheader = (): ActionType => ({
-    type: ActionTypes.HIDE_SUBHEADER
-})
-export const showSubheader = (): ActionType => ({
-    type: ActionTypes.SHOW_SUBHEADER
+export const changeLang = (lang: LangType): ActionType => ({
+    type: ActionTypes.CHANGE_LANG,
+    lang
 })
