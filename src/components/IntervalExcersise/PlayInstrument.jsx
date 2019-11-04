@@ -27,15 +27,25 @@ class PlayInstrument extends React.Component {
 
     render(){
         const {
-            numberOfRepeats
+            numberOfRepeats,
+            isPlayButtonUnlocked
         } = this.props
         return (
             <>
-                <Button onClick={this.playInstrument.bind(this)} disabled={this.state.repeats === numberOfRepeats}>PLAY</Button>
+                <Button onClick={this.playInstrument.bind(this)} disabled={this.state.repeats === numberOfRepeats && isPlayButtonUnlocked}>
+                    <FormattedMessage
+                        id="play"
+                        defaultMessage="Play"/>
+                </Button>
                 <FormattedMessage
                     id="repeats-left"
                     defaultMessage={`Repeats left: {left}`}
-                    values={{left: numberOfRepeats-this.state.repeats}} />
+                    values = {
+                        {
+                            left: numberOfRepeats - this.state.repeats > 0 ? numberOfRepeats - this.state.repeats : 0
+                        }
+                    }
+                    />
                 <MIDISounds 
                     ref={(ref)=> (this.midiSounds = ref)} 
                     appleElementName="root" 

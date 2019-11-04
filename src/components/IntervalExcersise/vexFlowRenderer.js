@@ -1,7 +1,9 @@
 import Vex from 'vexflow'
+import { getClef } from './getClef'
+import { getNote } from './getNote'
 
 
-const vexFlowRenderer = (notes, displayStyle, answeredQuestion) => {
+const vexFlowRenderer = (notes, displayStyle, isAnswerGiven) => {
     const VF = Vex.Flow
     var vf = new VF.Factory({
         renderer: {
@@ -29,51 +31,107 @@ const vexFlowRenderer = (notes, displayStyle, answeredQuestion) => {
         time: '4/4'
     })
 
-
-    // measure 1
     var system = makeSystem(140)
-    system.addStave({
-        voices: [
-            score.voice(score.notes('C#4/w', {
-                clef: 'treble',
-                stem: 'up'
-            }))
-        ]
-    }).addClef('treble').addTimeSignature('4/4')
 
-    system.addStave({
-        voices: [
-            score.voice(score.notes('C3/w/r', {
-                clef: 'bass',
-                stem: 'up'
-            }))
-        ]
-    }).addClef('bass').addTimeSignature('4/4')
-    system.addConnector('brace')
-    system.addConnector('singleRight')
-    system.addConnector('singleLeft')
+    //>>>>>>>FIRST NOTE<<<<<<<<
+    if(getNote([notes[0] === "treble"])) {
+         system.addStave({
+             voices: [
+                 score.voice(score.notes(`${notes[0]}/w`, {
+                     clef: 'treble',
+                     stem: 'up'
+                 }))
+             ]
+         }).addClef('treble').addTimeSignature('4/4')
 
-    //measure 2
-    system = makeSystem(100)
-    system.addStave({
-        voices: [
-            score.voice(score.notes('D4/w', {
-                clef: 'treble',
-                stem: 'up'
-            }))
-        ]
+         system.addStave({
+             voices: [
+                 score.voice(score.notes('C4/w/r', {
+                     clef: 'bass',
+                     stem: 'up'
+                 }))
+             ]
+         }).addClef('bass').addTimeSignature('4/4')
+         system.addConnector('brace')
+         system.addConnector('singleRight')
+         system.addConnector('singleLeft')
+
+         vf.draw()
+    } else {
+        system.addStave({
+            voices: [
+                score.voice(score.notes('C5/w/r', {
+                    clef: 'treble',
+                    stem: 'up'
+                }))
+            ]
+        }).addClef('treble').addTimeSignature('4/4')
+
+        system.addStave({
+            voices: [
+                score.voice(score.notes(`${notes[0]}/w`, {
+                    clef: 'bass',
+                    stem: 'up'
+                }))
+            ]
+        }).addClef('bass').addTimeSignature('4/4')
+        system.addConnector('brace')
+        system.addConnector('singleRight')
+        system.addConnector('singleLeft')
+
+        vf.draw()
+    }
+   
+    //>>>>>>>REST OF NOTES<<<<<<<<
+    isAnswerGiven && notes.forEach((note,index) => {
+        if(index<1) return
+
+        if(getClef(note) === "treble") {
+            system = makeSystem(100)
+            system.addStave({
+                voices: [
+                    score.voice(score.notes(`${note}/w`, {
+                        clef: 'treble',
+                        stem: 'up'
+                    }))
+                ]
+            })
+            system.addStave({
+                voices: [
+                    score.voice(score.notes('C4/w/r', {
+                        clef: 'bass',
+                        stem: 'up'
+                    }))
+                ]
+            })
+            system.addConnector('singleRight')
+
+            vf.draw()
+        } else {
+            system = makeSystem(100)
+            system.addStave({
+                voices: [
+                    score.voice(score.notes('C5/w/r', {
+                        clef: 'treble',
+                        stem: 'up'
+                    }))
+                ]
+            })
+            system.addStave({
+                voices: [
+                    score.voice(score.notes(`${note}/w`, {
+                        clef: 'bass',
+                        stem: 'up'
+                    }))
+                ]
+            })
+            system.addConnector('singleRight')
+
+            vf.draw()
+        }
     })
-    system.addStave({
-        voices: [
-            score.voice(score.notes('C3/w/r', {
-                clef: 'bass',
-                stem: 'up'
-            }))
-        ]
-    })
-    system.addConnector('singleRight')
 
-    vf.draw()
+    
 }
 
 export default vexFlowRenderer

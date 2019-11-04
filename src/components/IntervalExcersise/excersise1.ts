@@ -1,5 +1,5 @@
-import {NoteType} from './getNote'
-import {Answers} from './answerType'
+import { NoteType } from './getNote'
+import { Answers } from './answerType'
 
 export type PlayingStyle = 
 | "melodic"
@@ -24,7 +24,7 @@ const excersise2:Excersise = {
 }
 const excersise3:Excersise = {
     notes: ["E4", "B4"],
-    playingSyle: "harmonic",
+    playingSyle: "melodic",
     rightAnswer: "fifth"
 }
 
