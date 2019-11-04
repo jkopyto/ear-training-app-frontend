@@ -5,16 +5,15 @@ import Dashboard from './Dashboard'
 import { connect } from 'react-redux'
 import { AppState } from 'src/store'
 import LanguageProvider from './LanguageProvider'
+import {LangType} from 'src/components/LanguageProvider/LanguageProvider'
 
 type Props = {
-    locale: string
+    locale: LangType
 }
 
-const App = ({ locale }: Props) => {
-    const lang = `${locale === "GB" ? "en" : locale.toLowerCase()}-${locale}` as "en-GB" | "pl-PL"
-    
+const App = ({ locale }: Props) => {    
     return (
-        <LanguageProvider locale={lang}>
+        <LanguageProvider locale={locale}>
             <Switch>
                 <Route
                     path="/dashboard"

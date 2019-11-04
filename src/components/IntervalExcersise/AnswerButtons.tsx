@@ -2,8 +2,8 @@ import React from 'react'
 import intervalAnswers from 'src/util/intervalAnswers'
 import { injectIntl, InjectedIntl } from 'react-intl'
 import Button from 'src/components/Button'
-import { Answers, answersArray } from './answerType'
-import {getAnswers} from './getAnswers'
+import { Answers } from './answerType'
+import { getAnswers } from './getAnswers'
 
 type Props = {
     intl: InjectedIntl

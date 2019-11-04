@@ -1,11 +1,12 @@
 import * as ActionTypes from "../actions/ActionTypes"
 import { ActionType } from "../actions/ActionInterfaces"
+import { LangType } from 'src/components/LanguageProvider/LanguageProvider'
 
 export const LangReducer = (
     state: {
-        lang: string
+        lang: LangType
     } = {
-        lang: "GB"
+        lang: "en"
     },
     action: ActionType
 ) => {

@@ -6,10 +6,11 @@ import { changeLang } from 'src/actions'
 import clefLogo from 'src/images/icon.png'
 import ReactFlagsSelect from 'react-flags-select'
 import { Link } from 'react-router-dom'
+import { LangType } from 'src/components/LanguageProvider/LanguageProvider'
 
 type Props = {
     lang: string
-    changeLang: (lang: string) => void
+    changeLang: (lang: LangType) => void
 }
 const Header = ({lang, changeLang}: Props) => (
     <div className= "m-grid m-grid__item m-grid__item--top i-header">
@@ -23,8 +24,8 @@ const Header = ({lang, changeLang}: Props) => (
                 <ReactFlagsSelect
                     countries={["PL", "GB"]}
                     customLabels={{"GB": "EN-GB", "PL": "PL"}}
-                    defaultCountry={lang}
-                    onSelect={changeLang}
+                    defaultCountry={lang === "en" ? "GB" : lang.toUpperCase()}
+                    onSelect={(lang) => changeLang(lang === "GB" ? "en" as LangType : lang.toLowerCase() as LangType)}
                     placeholder="Select Language"
                     showSelectedLabel={false}
                     showOptionLabel={false}
@@ -40,7 +41,7 @@ const mapStateToProps = (state:AppState) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => ({
-    changeLang: (lang: string) => dispatch(changeLang(lang))
+    changeLang: (lang: LangType) => dispatch(changeLang(lang))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(Header)

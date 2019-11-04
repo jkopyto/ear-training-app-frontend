@@ -34,8 +34,9 @@
     "vexflow": "^1.2.89"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "start": "npm run build-langs && react-app-rewired start",
+    "build": "npm run build-langs && react-app-rewired build",
+    "build-langs": "node ./scripts/mergeMessages.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "extract-messages": "NODE_ENV=production babel ./src  --out-file /dev/null"

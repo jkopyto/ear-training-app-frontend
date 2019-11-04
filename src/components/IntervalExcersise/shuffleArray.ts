@@ -1,4 +1,4 @@
-import { Answers } from "./answerType";
+import { Answers } from "./answerType"
 
 export const shuffleArray = (a:Answers[]) =>{
     for (let i = a.length - 1; i > 0; i--) {
