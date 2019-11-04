@@ -3,10 +3,8 @@ import en from 'react-intl/locale-data/en'
 import pl from 'react-intl/locale-data/pl'
 import localeData from 'src/build/locales/data.json'
 import { IntlProvider, addLocaleData } from "react-intl"
-const moment = require("moment")
 
 addLocaleData([...en, ...pl])
-
 export type LangType = "en" | "pl"
 
 type Props = {
@@ -21,9 +19,10 @@ const LanguageProvider = ({ children, locale }: Props) => {
     },[locale])
     
     return (
-    <IntlProvider locale={`${locale}-${locale.toUpperCase()}`} messages={localeMessages} key={locale} >
-        {children}
-    </IntlProvider>
-)}
+        <IntlProvider locale={`${locale}-${locale.toUpperCase()}`} messages={localeMessages} key={locale} >
+            {children}
+        </IntlProvider>
+    )
+}
 
 export default LanguageProvider

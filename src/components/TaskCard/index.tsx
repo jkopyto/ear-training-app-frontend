@@ -24,7 +24,7 @@ const TaskCard = ({
             <h5>{`${title}`}</h5>
             <p>{`${description}`}</p>
             <Link to={excersisePath}>
-                <Button intent={"success"} >GO</Button>
+                <Button intent={"success"}>GO</Button>
             </Link>
         </Card>
     </div>
