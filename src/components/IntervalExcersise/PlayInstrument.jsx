@@ -13,16 +13,21 @@ class PlayInstrument extends React.Component {
     playInstrument() {
         const {
             notes,
-            singleNoteDuration
+            noteDuration,
+            playStyle
         } = this.props
         this.setState({
             repeats: this.state.repeats+1
         })
         const contextTime = this.midiSounds.contextTime()
         this.midiSounds.setInstrumentVolume(3, .3)
+        playStyle === "melodic" ? 
         notes.map((note, i) => {
-            return this.midiSounds.playChordAt(contextTime + Math.sign(i)*singleNoteDuration, 3, [getNote(note)], singleNoteDuration)
-        })
+            return this.midiSounds.playChordAt(contextTime + Math.sign(i) * noteDuration, 3, [getNote(note)], noteDuration)
+        }) 
+        :
+        this.midiSounds.playChordAt(0,3, notes.map(note => getNote(note)), noteDuration)
+        
     }
 
     render(){
