@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import IntervalExcersiseWrapper from './IntervalExcersiseWrapper'
 import AnswerButtons from './AnswerButtons'
 import vexFlowRenderer from './vexFlowRenderer'
@@ -32,20 +32,22 @@ const IntervalExcersise = ({intl, excersise, isLastExcersise, goNextQuestion, gi
             givenAnswer
         )
     },[givenAnswer])
+
     
     return (
         <IntervalExcersiseWrapper >
             {!isLastExcersise ? <>
                 <div id="score" className="m-grid__item i-interval__score" />
                 <AnswerButtons
-                    rightAnswer = {excersise.rightAnswer} 
-                    goNextQuestion = {goNextQuestion}
-                    giveAnswer = {giveAnswer}
-                    givenAnswer = {givenAnswer}/>
+                    rightAnswer={excersise.rightAnswer} 
+                    goNextQuestion={goNextQuestion}
+                    giveAnswer={giveAnswer}
+                    givenAnswer={givenAnswer}/>
                 <PlayInstrument
                     isPlayButtonUnlocked={!givenAnswer}
                     notes={excersise.notes}
-                    singleNoteDuration={0.7}
+                    playStyle={excersise.playingSyle}
+                    noteDuration={0.7}
                     numberOfRepeats={6} />
                 <div className = "m-grid m-grid__item i-interval__navigate-buttons">    
                     <Button

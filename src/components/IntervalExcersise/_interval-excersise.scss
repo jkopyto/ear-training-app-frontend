@@ -8,6 +8,10 @@
     .i-interval__score {
         >svg {
             width: 270px;
+            
+            #vf-pause{
+                display: none;
+            }
         }
     }
 
