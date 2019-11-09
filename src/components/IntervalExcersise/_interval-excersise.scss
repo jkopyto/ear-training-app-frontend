@@ -7,10 +7,15 @@
 
     .i-interval__score {
         >svg {
-            width: 270px;
+            width: 165px;
             
             #vf-pause{
                 display: none;
+            }
+        }
+        &.i-interval__score--expand {
+            >svg {
+                width: 270px;
             }
         }
     }

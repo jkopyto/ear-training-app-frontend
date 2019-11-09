@@ -14,7 +14,7 @@ export type Excersise = {
 
 const excersise1:Excersise = {
     notes: ["D3", "D4"],
-    playingSyle: "melodic",
+    playingSyle: "harmonic",
     rightAnswer: "octave"
 }
 const excersise2:Excersise = {

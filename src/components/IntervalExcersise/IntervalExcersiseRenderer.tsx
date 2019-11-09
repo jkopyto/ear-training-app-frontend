@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, Dispatch, useState } from 'react'
 import IntervalExcersiseWrapper from './IntervalExcersiseWrapper'
 import AnswerButtons from './AnswerButtons'
 import vexFlowRenderer from './vexFlowRenderer'
@@ -10,6 +10,10 @@ import { InjectedIntl, injectIntl } from 'react-intl'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { RouteBuilder } from 'src/views/routes'
 import ExcersiseFinished from './ExcersiseFinished'
+import { addIntervalScore } from 'src/actions'
+import { ActionType } from 'src/actions/ActionInterfaces'
+import { connect } from 'react-redux'
+import { AppState } from 'src/store'
 
 
 type Props = {
@@ -17,32 +21,50 @@ type Props = {
     excersise: Excersise
     givenAnswer?: string
     isLastExcersise: boolean
+    className?: string
+    addIntervalScore: () => void
     goNextQuestion: () => void
     giveAnswer: (answer: string) => void
 } & RouteComponentProps
 
-const IntervalExcersise = ({intl, excersise, isLastExcersise, goNextQuestion, giveAnswer, history, givenAnswer}:Props) => {
+const IntervalExcersise = ({ intl, excersise, isLastExcersise, goNextQuestion, giveAnswer, className, history, givenAnswer, addIntervalScore}:Props) => {
+    const [isScoreAdded, setScoreAdded] = useState<boolean>(false)
     
-    useEffect(() => {
-        const scoreDiv = document.getElementById('score')
-        if(scoreDiv) scoreDiv.innerHTML = ''
-        !isLastExcersise && vexFlowRenderer(
+    const renderVexFlow = () => !isLastExcersise && 
+        vexFlowRenderer(
             excersise.notes,
             excersise.playingSyle,
             givenAnswer
         )
-    },[givenAnswer])
 
-    
+    useEffect(() => {
+        const scoreDiv = document.getElementById('score')
+        if(scoreDiv) scoreDiv.innerHTML = ''
+        renderVexFlow()
+    }, [givenAnswer])
+
+    useEffect(() => {
+        givenAnswer === undefined && setScoreAdded(false)
+    }, [givenAnswer])
+
+    const addScore = () => {
+        if(!isScoreAdded) {
+            setScoreAdded(true)
+            addIntervalScore()
+        }
+    }
+
     return (
         <IntervalExcersiseWrapper >
             {!isLastExcersise ? <>
-                <div id="score" className="m-grid__item i-interval__score" />
+                <div id="score" className={`m-grid__item i-interval__score ${className || ""}`} />
                 <AnswerButtons
                     rightAnswer={excersise.rightAnswer} 
                     goNextQuestion={goNextQuestion}
                     giveAnswer={giveAnswer}
-                    givenAnswer={givenAnswer}/>
+                    givenAnswer={givenAnswer}
+                    onRightAnswer= {addScore}
+                    />
                 <PlayInstrument
                     isPlayButtonUnlocked={!givenAnswer}
                     notes={excersise.notes}
@@ -67,4 +89,12 @@ const IntervalExcersise = ({intl, excersise, isLastExcersise, goNextQuestion, gi
     )
 }
 
-export default injectIntl(withRouter(IntervalExcersise))
+const mapStateToProps = (state: AppState) => ({
+    currentScore: state.IntervalScore.score
+})
+
+const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => ({
+    addIntervalScore: () => dispatch(addIntervalScore())
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(injectIntl(withRouter(IntervalExcersise)))

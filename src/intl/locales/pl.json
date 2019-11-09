@@ -19,5 +19,7 @@
     "repeats-left": "Pozostało powtórzeń: {left}",
     "next-excersise": "Następne zadanie",
     "back-to-main": "Strona główna",
-    "play": "Odtwórz"
+    "play": "Odtwórz",
+    "excersise-finished": "Gratulacje! Udało Ci się ukończyć to zadanie",
+    "finish-score": "Twój wynik to: {score}"
 }

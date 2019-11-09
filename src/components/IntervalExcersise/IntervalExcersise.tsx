@@ -1,10 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, Dispatch } from 'react'
 import IntervalExcersiseRenderer from './IntervalExcersiseRenderer'
 import { excersises } from './excersise1'
+import { resetIntervalScore } from 'src/actions'
+import { ActionType } from 'src/actions/ActionInterfaces'
+import { connect } from 'react-redux'
 
-const IntervalExcersise = () => {
+type Props = {
+    resetIntervalScore: () => void
+}
+
+const IntervalExcersise = ({resetIntervalScore}: Props) => {
     const [isGivenAnswer, setIsGivenAnswer] = useState<string | undefined>(undefined)
     const [excersiseNumber, setExcersiseNumber] = useState<number>(0)
+    
+    useEffect(()=>{
+        resetIntervalScore()
+    },[])
 
     const goNextQuestion = () => {
         setIsGivenAnswer(undefined)
@@ -16,10 +27,15 @@ const IntervalExcersise = () => {
         <IntervalExcersiseRenderer
             excersise={excersises[excersiseNumber]}
             givenAnswer={isGivenAnswer}
-            isLastExcersise={excersiseNumber + 1 === excersises.length}
+            isLastExcersise={excersiseNumber === excersises.length}
             goNextQuestion={goNextQuestion}
-            giveAnswer={giveAnswer} />
+            giveAnswer={giveAnswer}
+            className={isGivenAnswer && excersises[excersiseNumber].playingSyle === "melodic" ? "i-interval__score--expand" : ""} />
     )
 }
 
-export default IntervalExcersise
+const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => ({
+    resetIntervalScore: () => dispatch(resetIntervalScore())
+})
+
+export default connect(null,mapDispatchToProps)(IntervalExcersise)

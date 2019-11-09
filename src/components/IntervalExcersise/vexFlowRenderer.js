@@ -31,7 +31,7 @@ const vexFlowRenderer = (notes, displayStyle, isAnswerGiven) => {
             time: '4/4'
         })
 
-        var system = makeSystem(140)
+        var system = makeSystem(120)
 
         //>>>>>>>FIRST NOTE<<<<<<<<
         if (getClef(notes[0]) === "treble") {

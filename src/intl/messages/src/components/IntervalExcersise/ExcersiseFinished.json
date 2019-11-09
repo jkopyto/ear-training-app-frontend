@@ -1,0 +1,10 @@
+[
+  {
+    "id": "excersise-finished",
+    "defaultMessage": "Congratulations. you've finished this excersise"
+  },
+  {
+    "id": "finish-score",
+    "defaultMessage": "Your score is: {score}"
+  }
+]

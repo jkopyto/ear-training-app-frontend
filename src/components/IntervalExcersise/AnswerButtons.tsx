@@ -10,33 +10,34 @@ type Props = {
     intl: InjectedIntl
     rightAnswer: Answers
     givenAnswer?: string
+    onRightAnswer: () => void
     goNextQuestion: () => void
     giveAnswer: (answer: string) => void
 }
 
-const AnswerButtons = ({ intl, rightAnswer, givenAnswer, goNextQuestion, giveAnswer}: Props) => {
-    const [answers] = useState(getAnswers(rightAnswer))
+const AnswerButtons = ({ intl, rightAnswer, givenAnswer, giveAnswer, onRightAnswer}: Props) => {
+    const [answers] = useState<Answers[]>(getAnswers(rightAnswer))
 
-    return (
-            <div className="m-grid__item i-interval-answers">
-                {
-                    answers.map((answer) => (
-                        <Button
-                            className={answer}
-                            key={answer}
-                            intent={setIntent(
-                                rightAnswer,
-                                answer,
-                                givenAnswer
-                            )}
-                            onClick={() => {
-                                giveAnswer(answer)
-                            }}
-                        >{intl.formatMessage(intervalAnswers[answer])}</Button>
-                    ))
-                }
-            </div>
+    return(
+        <div className="m-grid__item i-interval-answers">
+            {
+                answers.map((answer) => (
+                    <Button
+                        className={answer}
+                        key={answer}
+                        intent={setIntent(
+                            rightAnswer,
+                            answer,
+                            givenAnswer,
+                            onRightAnswer
+                        )}
+                        onClick={() => {
+                            giveAnswer(answer)
+                        }}
+                    >{intl.formatMessage(intervalAnswers[answer])}</Button>
+                ))
+            }
+        </div>
     )
 }
-
 export default injectIntl(AnswerButtons)
