@@ -5,7 +5,7 @@ type Props = {
 }
 
 const IntervalExcersiseWrapper = ({children}: Props) => (
-    <div className= "i-interval-wrapper m-grid__item m-grid m-grid--hor m-grid__item--center">
+    <div className= "i-excersise-wrapper i-interval-wrapper m-grid__item m-grid m-grid--hor m-grid__item--center">
         {children}
     </div>
 )

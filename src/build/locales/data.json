@@ -1,5 +1,7 @@
 {
   "en": {
+    "excersise-finished": "Congratulations. you've finished this excersise",
+    "finish-score": "Your score is: {score}",
     "play": "Play",
     "repeats-left": "Repeats left: {left}",
     "next-excersise": "Next Excersise",
@@ -38,6 +40,8 @@
     "repeats-left": "Pozostało powtórzeń: {left}",
     "next-excersise": "Następne zadanie",
     "back-to-main": "Strona główna",
-    "play": "Odtwórz"
+    "play": "Odtwórz",
+    "excersise-finished": "Gratulacje! Udało Ci się ukończyć to zadanie",
+    "finish-score": "Twój wynik to: {score}"
   }
 }

@@ -1,4 +1,6 @@
 {
+  "excersise-finished": "Congratulations. you've finished this excersise",
+  "finish-score": "Your score is: {score}",
   "play": "Play",
   "repeats-left": "Repeats left: {left}",
   "next-excersise": "Next Excersise",

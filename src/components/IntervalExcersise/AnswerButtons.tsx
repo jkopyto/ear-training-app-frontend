@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import intervalAnswers from 'src/util/intervalAnswers'
 import { injectIntl, InjectedIntl } from 'react-intl'
 import Button from 'src/components/Button'
@@ -16,7 +16,11 @@ type Props = {
 }
 
 const AnswerButtons = ({ intl, rightAnswer, givenAnswer, giveAnswer, onRightAnswer}: Props) => {
-    const [answers] = useState<Answers[]>(getAnswers(rightAnswer))
+    const [answers, setAnswers] = useState<Answers[]>(getAnswers(rightAnswer))
+
+    useEffect(() => {
+        setAnswers(getAnswers(rightAnswer))
+    },[rightAnswer])
 
     return(
         <div className="m-grid__item i-interval-answers">
