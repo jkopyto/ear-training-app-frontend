@@ -21,5 +21,10 @@
     "back-to-main": "Strona główna",
     "play": "Odtwórz",
     "excersise-finished": "Gratulacje! Udało Ci się ukończyć to zadanie",
-    "finish-score": "Twój wynik to: {score}"
+    "finish-score": "Twój wynik to: {score}",
+    "highest": "najwyższy",
+    "lowest": "najniższy",
+    "french-horn": "Waltornia",
+    "begin-excersise": "Rozpocznij",
+    "voice-note-description": "Usłyszysz kilkukrotnie utwór {title}{br}{instrument} rozpoczyna swoją partię od dźwięku {startingNote} ({voicePosition} głos){br}{br} Jaki {excersiseNotePosition} dźwięk gra {instrument} w usłyszanej partii?"
 }

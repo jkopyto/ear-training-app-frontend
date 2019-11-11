@@ -3,6 +3,7 @@ import Button from '../Button'
 import {Card, Elevation, ICardProps} from "@blueprintjs/core"
 import * as H from 'history'
 import { Link } from 'react-router-dom'
+import {FormattedMessage} from 'react-intl'
 
 type Props = {
     title: string,
@@ -24,7 +25,12 @@ const TaskCard = ({
             <h5>{`${title}`}</h5>
             <p>{`${description}`}</p>
             <Link to={excersisePath}>
-                <Button intent={"success"}>GO</Button>
+                <Button intent={"success"}>
+                    <FormattedMessage 
+                        id="begin-excersise"
+                        defaultMessage="Start"
+                    />
+                </Button>
             </Link>
         </Card>
     </div>
