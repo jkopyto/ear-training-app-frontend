@@ -33,7 +33,7 @@ const ExcersiseFinished = ({intl, score, history}: Props) => (
 )
 
 const mapStateToProps = (state:AppState) => ({
-    score: state.IntervalScore.score
+    score: state.Score.score
 })
 
 export default connect(mapStateToProps)(injectIntl(withRouter(ExcersiseFinished)))

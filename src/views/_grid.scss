@@ -63,7 +63,9 @@
     &.m-grid--justify-center {
         justify-content: center;
     }
-
+    &.m-grid--space-between {
+        justify-content: space-between;
+    }
     &.m-grid--end {
         justify-content: flex-end;
     }

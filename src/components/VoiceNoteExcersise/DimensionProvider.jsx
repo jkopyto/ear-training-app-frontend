@@ -1,5 +1,5 @@
-import React from 'react';
-import Dimensions from 'react-dimensions';
+import React from 'react'
+import Dimensions from 'react-dimensions'
 
 class DimensionsProvider extends React.Component {
     render() {

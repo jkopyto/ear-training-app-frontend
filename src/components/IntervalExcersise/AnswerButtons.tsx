@@ -11,7 +11,6 @@ type Props = {
     rightAnswer: Answers
     givenAnswer?: string
     onRightAnswer: () => void
-    goNextQuestion: () => void
     giveAnswer: (answer: string) => void
 }
 

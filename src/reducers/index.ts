@@ -1,10 +1,10 @@
 import { combineReducers } from "redux"
 import {LangReducer} from "./langReducer"
-import { IntervalScoreReducer } from "./scoreReducer"
+import { IntervalReducer } from "./scoreReducer"
 
 const rootReducer = combineReducers({
     LangReducer: LangReducer,
-    IntervalScore: IntervalScoreReducer
+    Score: IntervalReducer
 })
 
 export default rootReducer

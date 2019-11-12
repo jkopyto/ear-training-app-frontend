@@ -1,20 +1,20 @@
 import React, { useState, useEffect, Dispatch } from 'react'
 import IntervalExcersiseRenderer from './IntervalExcersiseRenderer'
 import { excersises } from './excersise1'
-import { resetIntervalScore } from 'src/actions'
+import { resetScore } from 'src/actions'
 import { ActionType } from 'src/actions/ActionInterfaces'
 import { connect } from 'react-redux'
 
 type Props = {
-    resetIntervalScore: () => void
+    resetScore: () => void
 }
 
-const IntervalExcersise = ({resetIntervalScore}: Props) => {
+const IntervalExcersise = ({ resetScore}: Props) => {
     const [isGivenAnswer, setIsGivenAnswer] = useState<string | undefined>(undefined)
     const [excersiseNumber, setExcersiseNumber] = useState<number>(0)
     
     useEffect(()=>{
-        resetIntervalScore()
+        resetScore()
     },[])
 
     const goNextQuestion = () => {
@@ -35,7 +35,7 @@ const IntervalExcersise = ({resetIntervalScore}: Props) => {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => ({
-    resetIntervalScore: () => dispatch(resetIntervalScore())
+    resetScore: () => dispatch(resetScore())
 })
 
 export default connect(null,mapDispatchToProps)(IntervalExcersise)

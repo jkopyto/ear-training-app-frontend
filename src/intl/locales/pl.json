@@ -25,6 +25,7 @@
     "highest": "najwyższy",
     "lowest": "najniższy",
     "french-horn": "Waltornia",
+    "soprano": "Sopran",
     "begin-excersise": "Rozpocznij",
     "voice-note-description": "Usłyszysz kilkukrotnie utwór {title}{br}{instrument} rozpoczyna swoją partię od dźwięku {startingNote} ({voicePosition} głos){br}{br} Jaki {excersiseNotePosition} dźwięk gra {instrument} w usłyszanej partii?"
 }

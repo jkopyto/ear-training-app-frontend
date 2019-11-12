@@ -4,6 +4,10 @@ const messages = defineMessages({
     frenchHorn: {
         id: "french-horn",
         defaultMessage: "French Horn"
+    },
+    soprano: {
+        id: "soprano",
+        defaultMessage: "Soprano"
     }
 })
 
