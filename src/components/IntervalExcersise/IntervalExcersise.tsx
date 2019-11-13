@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Dispatch } from 'react'
+import React, { useState, useEffect, Dispatch, useCallback } from 'react'
 import IntervalExcersiseRenderer from './IntervalExcersiseRenderer'
 import { excersises } from './excersise1'
 import { resetScore } from 'src/actions'
@@ -12,10 +12,13 @@ type Props = {
 const IntervalExcersise = ({ resetScore}: Props) => {
     const [isGivenAnswer, setIsGivenAnswer] = useState<string | undefined>(undefined)
     const [excersiseNumber, setExcersiseNumber] = useState<number>(0)
-    
-    useEffect(()=>{
+    const memoizedResetScore = useCallback(()=> {
         resetScore()
-    },[])
+    },[resetScore])
+
+    useEffect(()=>{
+        memoizedResetScore()
+    }, [memoizedResetScore])
 
     const goNextQuestion = () => {
         setIsGivenAnswer(undefined)

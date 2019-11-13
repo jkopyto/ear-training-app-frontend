@@ -1,10 +1,9 @@
-import React, { useEffect, Dispatch, useState } from 'react'
+import React, { useEffect, Dispatch, useState, useCallback } from 'react'
 import IntervalExcersiseWrapper from './IntervalExcersiseWrapper'
 import AnswerButtons from './AnswerButtons'
 import vexFlowRenderer from './vexFlowRenderer'
 import PlayInstrument from './PlayInstrument'
 import { Excersise } from './excersise1'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
 import ExcersiseFinished from '../ExcersiseFinished'
 import { addScore } from 'src/actions'
 import { ActionType } from 'src/actions/ActionInterfaces'
@@ -19,23 +18,32 @@ type Props = {
     addScore: () => void
     goNextQuestion: () => void
     giveAnswer: (answer: string) => void
-} & RouteComponentProps
+}
 
-const IntervalExcersise = ({ excersise, isLastExcersise, goNextQuestion, giveAnswer, className, history, givenAnswer, addScore}:Props) => {
+const IntervalExcersise = ({ excersise, isLastExcersise, goNextQuestion, giveAnswer, className, givenAnswer, addScore}:Props) => {
     const [isScoreAdded, setScoreAdded] = useState<boolean>(false)
     
-    const renderVexFlow = () => !isLastExcersise && 
-        vexFlowRenderer(
+    const renderVexFlow = useCallback(
+        () => {
+            !isLastExcersise && vexFlowRenderer(
             excersise.notes,
             excersise.playingSyle,
             givenAnswer
         )
+        },[excersise,givenAnswer, isLastExcersise]
+    )
+    // const renderVexFlow = () => !isLastExcersise && 
+    //     vexFlowRenderer(
+    //         excersise.notes,
+    //         excersise.playingSyle,
+    //         givenAnswer
+    //     )
 
     useEffect(() => {
         const scoreDiv = document.getElementById('score')
         if(scoreDiv) scoreDiv.innerHTML = ''
         renderVexFlow()
-    }, [givenAnswer])
+    })
 
     useEffect(() => {
         givenAnswer === undefined && setScoreAdded(false)
@@ -78,4 +86,4 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => ({
     addScore: () => dispatch(addScore())
 })
 
-export default connect(null,mapDispatchToProps)(withRouter(IntervalExcersise))
+export default connect(null,mapDispatchToProps)(IntervalExcersise)

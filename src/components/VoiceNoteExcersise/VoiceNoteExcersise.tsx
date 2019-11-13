@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Dispatch } from 'react'
+import React, { useState, useEffect, Dispatch, useCallback } from 'react'
 import VoiceNoteExcersiseWrapper from './VoiceNoteExcersiseWrapper'
 import VoiceNoteExcersiseContent from './VoiceNoteExcersiseContent'
 import { ActionType } from 'src/actions/ActionInterfaces'
@@ -14,9 +14,13 @@ type Props = {
 const VoiceNoteExcersise = ({resetScore}: Props) => {
     const [givenAnswer, setgivenAnswer] = useState<string | undefined>(undefined)
     const [excersiseNumber, setExcersiseNumber] = useState<number>(0)
-    useEffect(() => {
+    const memoizedResetScore = useCallback(() => {
         resetScore()
-    }, [])
+    }, [resetScore])
+
+    useEffect(() => {
+        memoizedResetScore()
+    }, [memoizedResetScore])
     const giveAnswer = (answer: string) => !givenAnswer && setgivenAnswer(answer)
     
     const goNextQuestion = () => {
