@@ -1,0 +1,25 @@
+.i-excersise-wrapper {
+    max-width: 500px;
+
+    .i-voice-note__piano-keyboard{
+        height: min-content !important;
+        margin:30px 5px;
+        .ReactPiano__Key{
+            &--true{
+                background-color:#0F9960 !important;
+            }
+            &--false {
+                background-color:#C23030 !important;
+            }
+            &.ReactPiano__Key--natural{
+                box-shadow: 0px 0px 46px -19px rgba(0, 0, 0, 0.75);
+
+            }
+        }
+        .ReactPiano__NoteLabelContainer {
+            display: none;
+        }
+    }
+}
+
+

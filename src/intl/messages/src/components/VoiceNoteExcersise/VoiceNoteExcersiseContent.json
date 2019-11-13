@@ -1,0 +1,18 @@
+[
+  {
+    "id": "highest",
+    "defaultMessage": "highest"
+  },
+  {
+    "id": "lowest",
+    "defaultMessage": "lowest"
+  },
+  {
+    "id": "voice-note-description",
+    "defaultMessage": "You will hear the song {title}{br}{instrument} part starts from {startingNote} ({voicePosition} voice){br}{br} What is the {excersiseNotePosition} sound played by {instrument}?"
+  },
+  {
+    "id": "repeats-left-voiceNote",
+    "defaultMessage": "Repeats left: {left}"
+  }
+]

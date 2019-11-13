@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { Button, IButtonProps } from '@blueprintjs/core'
 
 type Props = {
-    children: string
+    children: string | ReactNode
 } & IButtonProps
 
 const CustomButton = ({

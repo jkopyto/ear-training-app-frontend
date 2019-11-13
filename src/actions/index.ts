@@ -7,10 +7,10 @@ export const changeLang = (lang: LangType): ActionType => ({
     lang
 })
 
-export const addIntervalScore = (): ActionType => ({
-    type: ActionTypes.ADD_INTERVAL_SCORE
+export const addScore = (): ActionType => ({
+    type: ActionTypes.ADD_SCORE
 })
 
-export const resetIntervalScore = (): ActionType => ({
-    type: ActionTypes.RESET_INTERVAL_SCORE
+export const resetScore = (): ActionType => ({
+    type: ActionTypes.RESET_SCORE
 })

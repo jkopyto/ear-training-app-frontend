@@ -4,6 +4,10 @@
         justify-content: center;
         align-items: center;
     }
+    &.m-grid__item-align--center{
+        display: flex;
+        align-items: center;
+    }
 
     //== Horizontal grid
     .m-grid.m-grid--hor {
@@ -63,7 +67,9 @@
     &.m-grid--justify-center {
         justify-content: center;
     }
-
+    &.m-grid--space-between {
+        justify-content: space-between;
+    }
     &.m-grid--end {
         justify-content: flex-end;
     }

@@ -18,6 +18,11 @@ const Dashboard = ({ match }: RouteComponentProps) => (
                         description={"Rozpocznij swoje pierwsze zadanie"}
                         elevationLevel={Elevation.THREE}
                         excersisePath={RouteBuilder.toIntervals()} />
+                    <TaskCard
+                        title={"Drugie zadanie"}
+                        description={"Rozpocznij swoje drugie zadanie"}
+                        elevationLevel={Elevation.THREE}
+                        excersisePath={RouteBuilder.toVoiceNote()} />
                 </DashboardContentWrapper> : null
             }
             <DashboardRoutes currentURL={match.url} />

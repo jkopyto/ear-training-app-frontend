@@ -7,15 +7,15 @@ export interface ChangeLangAction extends Action {
     lang: LangType
 }
 
-export interface AddIntervalScoreAction extends Action {
-    type: typeof ActionTypes.ADD_INTERVAL_SCORE
+export interface AddScoreAction extends Action {
+    type: typeof ActionTypes.ADD_SCORE
 }
 
-export interface ResetIntervalScoreAction extends Action {
-    type: typeof ActionTypes.RESET_INTERVAL_SCORE
+export interface ResetScoreAction extends Action {
+    type: typeof ActionTypes.RESET_SCORE
 }
 
 export type ActionType =
     | ChangeLangAction
-    | AddIntervalScoreAction
-    | ResetIntervalScoreAction
+    | AddScoreAction
+    | ResetScoreAction

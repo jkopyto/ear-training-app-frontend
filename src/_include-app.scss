@@ -4,8 +4,12 @@
 @import 'components/TaskCard/task-card';
 @import 'components/IntervalExcersise/interval-excersise';
 @import 'components/Header/header';
+@import 'src/excersise-wrapper';
+@import 'components/VoiceNoteExcersise/voice-note-excersise';
 @import "~@blueprintjs/core/lib/css/blueprint.css";
 @import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
+@import "src/components/ExcersiseNavigationButtons/excersise-navigation-buttons";
+@import "src/components/MusicPlayer/music-player";
 
 //== Roboto font
 @import 'fonts/roboto';
@@ -174,7 +178,9 @@ body {
         outline: none !important;
     }
 }
-
+strong{
+    font-weight: 700;
+}
 body {
     display: flex;
     flex-direction: column;

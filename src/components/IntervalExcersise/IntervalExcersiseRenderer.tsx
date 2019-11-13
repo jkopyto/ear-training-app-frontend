@@ -1,56 +1,58 @@
-import React, { useEffect, Dispatch, useState } from 'react'
+import React, { useEffect, Dispatch, useState, useCallback } from 'react'
 import IntervalExcersiseWrapper from './IntervalExcersiseWrapper'
 import AnswerButtons from './AnswerButtons'
 import vexFlowRenderer from './vexFlowRenderer'
 import PlayInstrument from './PlayInstrument'
 import { Excersise } from './excersise1'
-import { Button } from '@blueprintjs/core'
-import commonMessages from 'src/util/commonMessages'
-import { InjectedIntl, injectIntl } from 'react-intl'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
-import { RouteBuilder } from 'src/views/routes'
-import ExcersiseFinished from './ExcersiseFinished'
-import { addIntervalScore } from 'src/actions'
+import ExcersiseFinished from '../ExcersiseFinished'
+import { addScore } from 'src/actions'
 import { ActionType } from 'src/actions/ActionInterfaces'
 import { connect } from 'react-redux'
-import { AppState } from 'src/store'
-
+import ExcersiseNavigationButtons from 'src/components/ExcersiseNavigationButtons'
 
 type Props = {
-    intl: InjectedIntl
     excersise: Excersise
     givenAnswer?: string
     isLastExcersise: boolean
     className?: string
-    addIntervalScore: () => void
+    addScore: () => void
     goNextQuestion: () => void
     giveAnswer: (answer: string) => void
-} & RouteComponentProps
+}
 
-const IntervalExcersise = ({ intl, excersise, isLastExcersise, goNextQuestion, giveAnswer, className, history, givenAnswer, addIntervalScore}:Props) => {
+const IntervalExcersise = ({ excersise, isLastExcersise, goNextQuestion, giveAnswer, className, givenAnswer, addScore}:Props) => {
     const [isScoreAdded, setScoreAdded] = useState<boolean>(false)
     
-    const renderVexFlow = () => !isLastExcersise && 
-        vexFlowRenderer(
+    const renderVexFlow = useCallback(
+        () => {
+            !isLastExcersise && vexFlowRenderer(
             excersise.notes,
             excersise.playingSyle,
             givenAnswer
         )
+        },[excersise,givenAnswer, isLastExcersise]
+    )
+    // const renderVexFlow = () => !isLastExcersise && 
+    //     vexFlowRenderer(
+    //         excersise.notes,
+    //         excersise.playingSyle,
+    //         givenAnswer
+    //     )
 
     useEffect(() => {
         const scoreDiv = document.getElementById('score')
         if(scoreDiv) scoreDiv.innerHTML = ''
         renderVexFlow()
-    }, [givenAnswer])
+    })
 
     useEffect(() => {
         givenAnswer === undefined && setScoreAdded(false)
     }, [givenAnswer])
 
-    const addScore = () => {
+    const addExcersiseScore = () => {
         if(!isScoreAdded) {
             setScoreAdded(true)
-            addIntervalScore()
+            addScore()
         }
     }
 
@@ -60,10 +62,9 @@ const IntervalExcersise = ({ intl, excersise, isLastExcersise, goNextQuestion, g
                 <div id="score" className={`m-grid__item i-interval__score ${className || ""}`} />
                 <AnswerButtons
                     rightAnswer={excersise.rightAnswer} 
-                    goNextQuestion={goNextQuestion}
                     giveAnswer={giveAnswer}
                     givenAnswer={givenAnswer}
-                    onRightAnswer= {addScore}
+                    onRightAnswer={addExcersiseScore}
                     />
                 <PlayInstrument
                     isPlayButtonUnlocked={!givenAnswer}
@@ -71,30 +72,18 @@ const IntervalExcersise = ({ intl, excersise, isLastExcersise, goNextQuestion, g
                     playStyle={excersise.playingSyle}
                     noteDuration={0.7}
                     numberOfRepeats={6} />
-                <div className = "m-grid m-grid__item i-interval__navigate-buttons">    
-                    <Button
-                        onClick={() => history.push(RouteBuilder.toDashboard())}>
-                        {intl.formatMessage(commonMessages.backToMain)}
-                    </Button>
-                    <Button 
-                    disabled={!givenAnswer}
-                    active={!givenAnswer}
-                    onClick={goNextQuestion}>
-                        {intl.formatMessage(commonMessages.nextExcersise)}
-                    </Button>
-                </div>
+                <ExcersiseNavigationButtons 
+                    isAnswerGiven={!!givenAnswer}
+                    goNextQuestion={goNextQuestion}
+                />
             </> : <ExcersiseFinished />
             }
         </IntervalExcersiseWrapper>
     )
 }
 
-const mapStateToProps = (state: AppState) => ({
-    currentScore: state.IntervalScore.score
-})
-
 const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => ({
-    addIntervalScore: () => dispatch(addIntervalScore())
+    addScore: () => dispatch(addScore())
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(injectIntl(withRouter(IntervalExcersise)))
+export default connect(null,mapDispatchToProps)(IntervalExcersise)

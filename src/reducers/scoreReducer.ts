@@ -1,7 +1,7 @@
 import * as ActionTypes from "../actions/ActionTypes"
 import { ActionType } from "../actions/ActionInterfaces"
 
-export const IntervalScoreReducer = (
+export const IntervalReducer = (
     state: {
         score: number
     } = {
@@ -10,9 +10,9 @@ export const IntervalScoreReducer = (
     action: ActionType
 ) => {
     switch (action.type) {
-        case ActionTypes.ADD_INTERVAL_SCORE:
+        case ActionTypes.ADD_SCORE:
             return { score: state.score + 1 }
-        case ActionTypes.RESET_INTERVAL_SCORE:
+        case ActionTypes.RESET_SCORE:
             return { score: 0 }
         default:
             return state

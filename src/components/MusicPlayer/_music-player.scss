@@ -1,0 +1,21 @@
+.panel-content {
+    padding-right: 80px !important;
+
+    .audio-lists-btn {
+        display: none !important;
+    }
+    .group {
+        .next-audio{
+            display: none !important;
+        }
+        .prev-audio{
+            display: none !important;
+        }
+        &.audio-download {
+            display: none !important;
+        }
+    }
+    .audio-main {
+        display: none !important;
+    }
+}
