@@ -4,7 +4,7 @@ import {
     MidiNumbers
 } from 'react-piano'
 import 'react-piano/dist/styles.css'
-import DimensionProvider from './DimensionProvider'
+import DimensionProvider from '../DimensionProvider/DimensionProvider'
 
 const midiToNote = {
     48: "C",

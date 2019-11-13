@@ -10,7 +10,7 @@ class DimensionsProvider extends React.Component {
                     containerHeight: this.props.containerHeight,
                 })}
             </div>
-        );
+        )
     }
 }
 

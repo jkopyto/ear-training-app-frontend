@@ -8,7 +8,7 @@ import {VoiceNoteExcersise} from './voiceNoteExcersise'
 import { ActionType } from 'src/actions/ActionInterfaces'
 import { addScore } from 'src/actions'
 import { connect } from 'react-redux'
-import MusicPlayer from './MusicPlayer'
+import MusicPlayer from '../MusicPlayer/MusicPlayer'
 import ExcersiseNavigationButtons from 'src/components/ExcersiseNavigationButtons'
 
 const voiceNoteExcersiseMessages = defineMessages({
@@ -28,12 +28,14 @@ type Props = {
     goNextQuestion: () => void
     giveAnswer: (answer: string) => void
     addScore: () => void
+    repeats: number
     givenAnswer?: string
 } & InjectedIntlProps & RouteComponentProps
 
 
-const VoiceNoteExcersiseContent = ({ intl, addScore, excersise, goNextQuestion, giveAnswer, givenAnswer }: Props) => {
+const VoiceNoteExcersiseContent = ({ intl, repeats, addScore, excersise, goNextQuestion, giveAnswer, givenAnswer }: Props) => {
     const [isScoreAdded, setScoreAdded] = useState<boolean>(false)
+    const [repeatsLeft, setRepeats] = useState<number>(repeats)
 
     useEffect(()=>{
         givenAnswer === undefined && setScoreAdded(false)
@@ -43,10 +45,12 @@ const VoiceNoteExcersiseContent = ({ intl, addScore, excersise, goNextQuestion, 
         if (!isScoreAdded) {
             setScoreAdded(true)
             addScore()
-            console.log("Wykonuje sie")
         }
     }
-    
+    const decreaseRepeats = () => {
+        setRepeats(repeatsLeft-1)
+    }
+
     return(
         <>
             <FormattedMessage 
@@ -67,10 +71,23 @@ const VoiceNoteExcersiseContent = ({ intl, addScore, excersise, goNextQuestion, 
                 onRightAnswer={addExcersiseScore}
                 giveAnswer={giveAnswer}
             />
+            <div className="m-grid m-grid__item--center">
+                <FormattedMessage
+                    id="repeats-left-voiceNote"
+                    defaultMessage={`Repeats left: {left}`}
+                    values={
+                        {
+                            left: repeatsLeft
+                        }
+                    }
+                />
+            </div>
             <MusicPlayer 
                 title={excersise.title}
                 cover={excersise.cover}
                 backendTitle={excersise.backendTitle}
+                onAudioStop={decreaseRepeats}
+                showPlay={repeatsLeft!==0 || !givenAnswer}
             />
             <ExcersiseNavigationButtons
                 isAnswerGiven={!!givenAnswer}

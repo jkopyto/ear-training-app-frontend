@@ -6,9 +6,11 @@ type Props = {
     title: string
     cover: string
     backendTitle: string
+    showPlay: boolean
+    onAudioStop: () => void
 }
 
-const MusicPlayer = ({ title, cover, backendTitle}: Props) => {
+const MusicPlayer = ({ title, showPlay, onAudioStop, cover, backendTitle}: Props) => {
     const [trackId,setTrackId] = useState<string>('')
     const [isLoading, setIsLoading] = useState<boolean>(true)
 
@@ -52,7 +54,9 @@ const MusicPlayer = ({ title, cover, backendTitle}: Props) => {
             preload={true}
             mode='full'
             autoPlay={false}
+            showPlay={showPlay}
             showDownload={true}
+            onAudioEnded={onAudioStop}
             showThemeSwitch={false}
             glassBg={true}
             remove={false}

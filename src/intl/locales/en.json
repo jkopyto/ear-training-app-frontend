@@ -1,1 +1,26 @@
-{}
+{
+  "excersise-finished": "Congratulations. you've finished this excersise",
+  "finish-score": "Your score is: {score}",
+  "play": "Play",
+  "repeats-left": "Repeats left: {left}",
+  "begin-excersise": "Start",
+  "highest": "highest",
+  "lowest": "lowest",
+  "voice-note-description": "You will hear the song {title}{br}{instrument} part starts from {startingNote} ({voicePosition} voice){br}{br} What is the {excersiseNotePosition} sound played by {instrument}?",
+  "next-excersise": "Next Excersise",
+  "back-to-main": "Back to dashboard",
+  "french-horn": "French Horn",
+  "soprano": "Soprano",
+  "minor-second": "Minor Second",
+  "major-second": "Major Second",
+  "minor-third": "Minor Third",
+  "major-third": "Major Third",
+  "fourth": "Fourth",
+  "tritone": "Tritone",
+  "fifth": "Fifth",
+  "minor-sixth": "Minor Sixth",
+  "major-sixth": "Major Sixth",
+  "minor-seventh": "Minor Seventh",
+  "major-seventh": "Major Seventh",
+  "octave": "Octave"
+}

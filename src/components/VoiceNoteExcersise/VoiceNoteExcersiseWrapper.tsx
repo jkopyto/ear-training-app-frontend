@@ -5,7 +5,7 @@ type Props = {
 }
 
 const VoiceNoteExcersiseWrapper = ({children}: Props) => (
-    <div className="i-excersise-wrapper">
+    <div className="i-excersise-wrapper m-grid m-grid--hor">
         {children}
     </div>
 )

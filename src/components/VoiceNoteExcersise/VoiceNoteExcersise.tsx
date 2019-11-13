@@ -34,6 +34,7 @@ const VoiceNoteExcersise = ({resetScore}: Props) => {
                         givenAnswer={givenAnswer}
                         isLastExcersise={excersiseNumber === voiceNoteExcersises.length}
                         goNextQuestion={goNextQuestion}
+                        repeats={3}
                     />
                     : <ExcersiseFinished />
             }

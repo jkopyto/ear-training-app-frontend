@@ -4,6 +4,10 @@
         justify-content: center;
         align-items: center;
     }
+    &.m-grid__item-align--center{
+        display: flex;
+        align-items: center;
+    }
 
     //== Horizontal grid
     .m-grid.m-grid--hor {

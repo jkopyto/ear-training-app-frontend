@@ -29,6 +29,13 @@ class PlayInstrument extends React.Component {
         this.midiSounds.playChordAt(0,3, notes.map(note => getNote(note)), noteDuration)
         
     }
+    componentDidUpdate(prevProps){
+        if (prevProps.notes !== this.props.notes) {
+            this.setState({
+                repeats: 0
+            })
+        }
+    }
 
     render(){
         const {
