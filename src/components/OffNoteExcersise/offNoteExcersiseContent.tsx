@@ -63,7 +63,7 @@ const OffNoteExcersiseContent = ({ intl, repeats, addScore, excersise, goNextQue
             />
             <div className="m-grid m-grid__item--center">
                 <FormattedMessage
-                    id="repeats-left-voiceNote"
+                    id="repeats-left-offNote"
                     defaultMessage={`Repeats left: {left}`}
                     values={
                         {

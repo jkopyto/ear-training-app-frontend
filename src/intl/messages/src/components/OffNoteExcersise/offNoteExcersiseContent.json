@@ -4,7 +4,7 @@
     "defaultMessage": "You will hear the song {title} in key {key}{br} In {instrument} part you can hear an off-note sound. Find it and press the right key on piano keyboard"
   },
   {
-    "id": "repeats-left-voiceNote",
+    "id": "repeats-left-offNote",
     "defaultMessage": "Repeats left: {left}"
   }
 ]
