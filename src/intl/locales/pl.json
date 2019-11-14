@@ -31,7 +31,7 @@
     "soprano": "Sopran",
     "begin-excersise": "Rozpocznij",
     "voice-note-description": "Usłyszysz kilkukrotnie utwór {title}{br}{instrument} rozpoczyna swoją partię od dźwięku {startingNote} ({voicePosition} głos){br}{br} Jaki {excersiseNotePosition} dźwięk gra {instrument} w usłyszanej partii?",
-    "off-note-description": "Usłyszysz kilkukrotnie utwór {title} w tonacji {key}{br}{instrument} gra w swojej partii jeden dźwięk oby. Znajdź go i kliknij odpowiedni klawisz pianina",
+    "off-note-description": "Usłyszysz kilkukrotnie utwór {title} w tonacji {key}{br}{instrument} gra w swojej partii jeden dźwięk obcy (niebędący gamowłaściwym). Znajdź go i kliknij odpowiedni klawisz pianina",
     "C-minor": "C-moll",
     "G-minor": "G-moll",
     "D-minor": "D-moll"
