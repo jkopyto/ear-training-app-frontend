@@ -1,5 +1,5 @@
 import React, { useEffect, Dispatch, useState, useCallback } from 'react'
-import IntervalExcersiseWrapper from './IntervalExcersiseWrapper'
+import ExcersiseWrapper from '../ExcersiseWrapper'
 import AnswerButtons from './AnswerButtons'
 import vexFlowRenderer from './vexFlowRenderer'
 import PlayInstrument from './PlayInstrument'
@@ -32,12 +32,6 @@ const IntervalExcersise = ({ excersise, isLastExcersise, goNextQuestion, giveAns
         )
         },[excersise,givenAnswer, isLastExcersise]
     )
-    // const renderVexFlow = () => !isLastExcersise && 
-    //     vexFlowRenderer(
-    //         excersise.notes,
-    //         excersise.playingSyle,
-    //         givenAnswer
-    //     )
 
     useEffect(() => {
         const scoreDiv = document.getElementById('score')
@@ -57,7 +51,7 @@ const IntervalExcersise = ({ excersise, isLastExcersise, goNextQuestion, giveAns
     }
 
     return (
-        <IntervalExcersiseWrapper >
+        <ExcersiseWrapper className="i-interval-wrapper m-grid__item m-grid__item--center" >
             {!isLastExcersise ? <>
                 <div id="score" className={`m-grid__item i-interval__score ${className || ""}`} />
                 <AnswerButtons
@@ -78,7 +72,7 @@ const IntervalExcersise = ({ excersise, isLastExcersise, goNextQuestion, giveAns
                 />
             </> : <ExcersiseFinished />
             }
-        </IntervalExcersiseWrapper>
+        </ExcersiseWrapper>
     )
 }
 

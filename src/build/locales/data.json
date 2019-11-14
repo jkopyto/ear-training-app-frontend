@@ -8,6 +8,7 @@
     "highest": "highest",
     "lowest": "lowest",
     "voice-note-description": "You will hear the song {title}{br}{instrument} part starts from {startingNote} ({voicePosition} voice){br}{br} What is the {excersiseNotePosition} sound played by {instrument}?",
+    "repeats-left-voiceNote": "Repeats left: {left}",
     "next-excersise": "Next Excersise",
     "back-to-main": "Back to dashboard",
     "french-horn": "French Horn",
@@ -44,6 +45,7 @@
     "major-seventh": "Septyma Wielka",
     "octave": "Oktawa",
     "repeats-left": "Pozostało powtórzeń: {left}",
+    "repeats-left-voiceNote": "Pozostało powtórzeń: {left}",
     "next-excersise": "Następne zadanie",
     "back-to-main": "Strona główna",
     "play": "Odtwórz",
@@ -52,6 +54,7 @@
     "highest": "najwyższy",
     "lowest": "najniższy",
     "french-horn": "Waltornia",
+    "violoncello": "Wiolonczela",
     "soprano": "Sopran",
     "begin-excersise": "Rozpocznij",
     "voice-note-description": "Usłyszysz kilkukrotnie utwór {title}{br}{instrument} rozpoczyna swoją partię od dźwięku {startingNote} ({voicePosition} głos){br}{br} Jaki {excersiseNotePosition} dźwięk gra {instrument} w usłyszanej partii?"

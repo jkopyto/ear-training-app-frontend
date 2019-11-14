@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import PianoKeyboard from '../PianoKeyboard/PianoKeyboard'
-import {VoiceNoteExcersiseRightAnswers} from './voiceNoteExcersise'
+import { PianoKeyboardRightAnswers } from '../@types/pianoKeyboardRightAnswers'
+
 type Props = {
-    rightAnswer: VoiceNoteExcersiseRightAnswers
+    rightAnswer: PianoKeyboardRightAnswers
     givenAnswer?: string
     onRightAnswer: () => void
     giveAnswer: (answer: string) => void

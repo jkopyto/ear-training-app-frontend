@@ -1,10 +1,10 @@
-import React, { useEffect, useState, Dispatch } from 'react'
+import React, { useEffect, useState, Dispatch, useCallback } from 'react'
 import "react-jinke-music-player/assets/index.css"
 import { FormattedMessage, injectIntl, InjectedIntlProps, defineMessages } from 'react-intl'
 import messages from 'src/util/instruments'
 import VoiceNoteExcersisePianoKeyboard from './VoiceNoteExcersisePianoKeyboard'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
-import {VoiceNoteExcersise} from './voiceNoteExcersise'
+import { VoiceNoteExcersise } from '../@types/voiceNoteExcersise'
 import { ActionType } from 'src/actions/ActionInterfaces'
 import { addScore } from 'src/actions'
 import { connect } from 'react-redux'
@@ -37,6 +37,11 @@ const VoiceNoteExcersiseContent = ({ intl, repeats, addScore, excersise, goNextQ
     const [isScoreAdded, setScoreAdded] = useState<boolean>(false)
     const [repeatsLeft, setRepeats] = useState<number>(repeats)
 
+    const resetRepeats = useCallback(() => { setRepeats(repeats) }, [repeats])
+    useEffect(() => {
+        if (excersise) resetRepeats()
+    }, [excersise, resetRepeats])
+    
     useEffect(()=>{
         givenAnswer === undefined && setScoreAdded(false)
     }, [givenAnswer])

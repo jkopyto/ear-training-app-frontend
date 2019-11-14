@@ -8,6 +8,14 @@ const messages = defineMessages({
     soprano: {
         id: "soprano",
         defaultMessage: "Soprano"
+    },
+    violoncello: {
+        id: "violoncello",
+        defaultMessage: "Violoncello"
+    },
+    piano: {
+        id: "piano",
+        defaultMessage: "Fortepian"
     }
 })
 

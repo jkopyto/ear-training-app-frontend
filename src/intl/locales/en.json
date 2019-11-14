@@ -7,6 +7,7 @@
   "highest": "highest",
   "lowest": "lowest",
   "voice-note-description": "You will hear the song {title}{br}{instrument} part starts from {startingNote} ({voicePosition} voice){br}{br} What is the {excersiseNotePosition} sound played by {instrument}?",
+  "repeats-left-voiceNote": "Repeats left: {left}",
   "next-excersise": "Next Excersise",
   "back-to-main": "Back to dashboard",
   "french-horn": "French Horn",
