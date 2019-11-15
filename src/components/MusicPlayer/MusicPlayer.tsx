@@ -46,6 +46,7 @@ const MusicPlayer = ({ title, showPlay, onAudioStop, cover, backendTitle}: Props
                 name: title,
                 cover: cover,
                 musicSrc: () => {
+                    console.log(`${fetchLink}${trackId}.mp3`)
                     return Promise.resolve(`${fetchLink}${trackId}.mp3`)
                 }
             }]}

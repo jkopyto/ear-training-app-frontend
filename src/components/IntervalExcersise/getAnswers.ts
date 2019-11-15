@@ -1,4 +1,4 @@
-import { Answers, answersArray } from './answerType'
+import { Answers, answersArray } from '../@types/answerType'
 import { shuffleArray } from './shuffleArray'
 
 export const getAnswers = (val: Answers) => {

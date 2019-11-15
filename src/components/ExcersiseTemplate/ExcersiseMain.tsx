@@ -1,45 +1,55 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useEffect, Dispatch, useCallback } from 'react'
 import ExcersiseWrapper from '../ExcersiseWrapper'
+import ExcersiseContent from './ExcersiseContent'
 import { ActionType } from 'src/actions/ActionInterfaces'
 import { resetScore } from 'src/actions'
 import { connect } from 'react-redux'
 import ExcersiseFinished from 'src/components/ExcersiseFinished'
-import { Dispatch } from 'redux'
-import { offNoteExcersises } from './offNoteExcersises'
-import OffNoteExcersiseContent from './offNoteExcersiseContent'
+import { Excersise } from '../@types/excersise'
 
 type Props = {
+    children: (
+        excersise: Excersise,
+        addExcersiseScore: () => void,
+        giveAnswer: (answer: string) => void,
+        repeatsLeft: number,
+        decreaseRepeats: () => void,
+        givenAnswer?: string
+    ) => JSX.Element
+    excersise: Excersise[]
+    repeats: number
     resetScore: () => void
 }
 
-const OffNoteExcersise = ({resetScore}: Props) => {
+const ExcersiseMain = ({ children, repeats, excersise, resetScore }: Props) => {
     const [givenAnswer, setgivenAnswer] = useState<string | undefined>(undefined)
     const [excersiseNumber, setExcersiseNumber] = useState<number>(0)
+
     const memoizedResetScore = useCallback(() => {
         resetScore()
     }, [resetScore])
-
     useEffect(() => {
         memoizedResetScore()
     }, [memoizedResetScore])
+
     const giveAnswer = (answer: string) => !givenAnswer && setgivenAnswer(answer)
 
     const goNextQuestion = () => {
         setgivenAnswer(undefined)
         setExcersiseNumber(excersiseNumber + 1)
     }
-    
     return (
         <ExcersiseWrapper>
             {
-                excersiseNumber !== offNoteExcersises.length ?
-                    <OffNoteExcersiseContent
-                        excersise={offNoteExcersises[excersiseNumber]}
+                excersiseNumber < excersise.length ?
+                    <ExcersiseContent
+                        excersise={excersise[excersiseNumber] as Excersise}
                         giveAnswer={giveAnswer}
                         givenAnswer={givenAnswer}
-                        isLastExcersise={excersiseNumber === offNoteExcersises.length}
+                        isLastExcersise={excersiseNumber < excersise.length}
                         goNextQuestion={goNextQuestion}
-                        repeats={3} 
+                        repeats={repeats}
+                        children={children}
                     />
                     : <ExcersiseFinished />
             }
@@ -51,4 +61,4 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => ({
     resetScore: () => dispatch(resetScore())
 })
 
-export default connect(null,mapDispatchToProps)(OffNoteExcersise)
+export default connect(null, mapDispatchToProps)(ExcersiseMain)

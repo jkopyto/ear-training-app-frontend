@@ -8,6 +8,10 @@
     "defaultMessage": "Soprano"
   },
   {
+    "id": "tenor",
+    "defaultMessage": "Tenor"
+  },
+  {
     "id": "violoncello",
     "defaultMessage": "Violoncello"
   },

@@ -3,15 +3,15 @@ import ExcersiseWrapper from '../ExcersiseWrapper'
 import AnswerButtons from './AnswerButtons'
 import vexFlowRenderer from './vexFlowRenderer'
 import PlayInstrument from './PlayInstrument'
-import { Excersise } from './excersise1'
 import ExcersiseFinished from '../ExcersiseFinished'
+import { IntervalExcersise } from '../@types/intervalExcersise'
 import { addScore } from 'src/actions'
 import { ActionType } from 'src/actions/ActionInterfaces'
 import { connect } from 'react-redux'
 import ExcersiseNavigationButtons from 'src/components/ExcersiseNavigationButtons'
 
 type Props = {
-    excersise: Excersise
+    excersise: IntervalExcersise
     givenAnswer?: string
     isLastExcersise: boolean
     className?: string
@@ -20,7 +20,7 @@ type Props = {
     giveAnswer: (answer: string) => void
 }
 
-const IntervalExcersise = ({ excersise, isLastExcersise, goNextQuestion, giveAnswer, className, givenAnswer, addScore}:Props) => {
+const IntervalExcersiseRenderer = ({ excersise, isLastExcersise, goNextQuestion, giveAnswer, className, givenAnswer, addScore}:Props) => {
     const [isScoreAdded, setScoreAdded] = useState<boolean>(false)
     
     const renderVexFlow = useCallback(
@@ -80,4 +80,4 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => ({
     addScore: () => dispatch(addScore())
 })
 
-export default connect(null,mapDispatchToProps)(IntervalExcersise)
+export default connect(null, mapDispatchToProps)(IntervalExcersiseRenderer)

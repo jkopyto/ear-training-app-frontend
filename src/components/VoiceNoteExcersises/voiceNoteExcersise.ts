@@ -22,15 +22,15 @@ const voiceNoteExcersise2: VoiceNoteExcersise = {
     excersiseNotePosition: "lowest"
 }
 
-// const voiceNoteExcersise3: VoiceNoteExcersise = {
-//     rightAnswer: "D",
-//     title:
-//     backendTitle:
-//     covers:
-//     instrument: "violoncello",
-//     startingVoiceNote: "G",
-//     givenVoicePosition: "highest",
-//     excersiseNotePosition: ""
-// }
+const voiceNoteExcersise3: VoiceNoteExcersise = {
+    rightAnswer: "D",
+    title: "Converte nos",
+    backendTitle: "Converte_nos",
+    cover: "https://upload.wikimedia.org/wikipedia/commons/4/43/EscOrdendePredicadores2Wikipedia.png",
+    instrument: "tenor",
+    startingVoiceNote: "H",
+    givenVoicePosition: "highestMale",
+    excersiseNotePosition: "highest"
+}
 
-export const voiceNoteExcersises: VoiceNoteExcersise[] = [voiceNoteExcersise1, voiceNoteExcersise2]
+export const voiceNoteExcersises: VoiceNoteExcersise[] = [voiceNoteExcersise1, voiceNoteExcersise2, voiceNoteExcersise3]
