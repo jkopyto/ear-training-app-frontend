@@ -1,17 +1,17 @@
 import React, { useEffect, Dispatch, useState, useCallback } from 'react'
-import IntervalExcersiseWrapper from './IntervalExcersiseWrapper'
+import ExcersiseWrapper from '../ExcersiseWrapper'
 import AnswerButtons from './AnswerButtons'
 import vexFlowRenderer from './vexFlowRenderer'
 import PlayInstrument from './PlayInstrument'
-import { Excersise } from './excersise1'
 import ExcersiseFinished from '../ExcersiseFinished'
+import { IntervalExcersise } from '../@types/intervalExcersise'
 import { addScore } from 'src/actions'
 import { ActionType } from 'src/actions/ActionInterfaces'
 import { connect } from 'react-redux'
 import ExcersiseNavigationButtons from 'src/components/ExcersiseNavigationButtons'
 
 type Props = {
-    excersise: Excersise
+    excersise: IntervalExcersise
     givenAnswer?: string
     isLastExcersise: boolean
     className?: string
@@ -20,7 +20,7 @@ type Props = {
     giveAnswer: (answer: string) => void
 }
 
-const IntervalExcersise = ({ excersise, isLastExcersise, goNextQuestion, giveAnswer, className, givenAnswer, addScore}:Props) => {
+const IntervalExcersiseRenderer = ({ excersise, isLastExcersise, goNextQuestion, giveAnswer, className, givenAnswer, addScore}:Props) => {
     const [isScoreAdded, setScoreAdded] = useState<boolean>(false)
     
     const renderVexFlow = useCallback(
@@ -32,12 +32,6 @@ const IntervalExcersise = ({ excersise, isLastExcersise, goNextQuestion, giveAns
         )
         },[excersise,givenAnswer, isLastExcersise]
     )
-    // const renderVexFlow = () => !isLastExcersise && 
-    //     vexFlowRenderer(
-    //         excersise.notes,
-    //         excersise.playingSyle,
-    //         givenAnswer
-    //     )
 
     useEffect(() => {
         const scoreDiv = document.getElementById('score')
@@ -57,7 +51,7 @@ const IntervalExcersise = ({ excersise, isLastExcersise, goNextQuestion, giveAns
     }
 
     return (
-        <IntervalExcersiseWrapper >
+        <ExcersiseWrapper className="i-interval-wrapper m-grid__item m-grid__item--center" >
             {!isLastExcersise ? <>
                 <div id="score" className={`m-grid__item i-interval__score ${className || ""}`} />
                 <AnswerButtons
@@ -78,7 +72,7 @@ const IntervalExcersise = ({ excersise, isLastExcersise, goNextQuestion, giveAns
                 />
             </> : <ExcersiseFinished />
             }
-        </IntervalExcersiseWrapper>
+        </ExcersiseWrapper>
     )
 }
 
@@ -86,4 +80,4 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => ({
     addScore: () => dispatch(addScore())
 })
 
-export default connect(null,mapDispatchToProps)(IntervalExcersise)
+export default connect(null, mapDispatchToProps)(IntervalExcersiseRenderer)

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import intervalAnswers from 'src/util/intervalAnswers'
 import { injectIntl, InjectedIntl } from 'react-intl'
 import Button from 'src/components/Button'
-import { Answers } from './answerType'
+import { Answers } from '../@types/answerType'
 import { getAnswers } from './getAnswers'
 import { setIntent } from './setButtonIntent'
 

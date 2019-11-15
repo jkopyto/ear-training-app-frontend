@@ -1,36 +1,4 @@
-
-export type VoiceNoteExcersiseRightAnswers =
-| "C"
-| "C#/Db"
-| "D"
-| "D#/Eb"
-| "E"
-| "F"
-| "F#/Gb"
-| "G"
-| "G#/Ab"
-| "A"
-| "A#/Hb"
-| "H"
-
-export type Instrument = 
-| "frenchHorn"
-| "soprano"
-
-export type VoicePosition = 
-| "highest"
-| "lowest"
-
-export type VoiceNoteExcersise = {
-    rightAnswer: VoiceNoteExcersiseRightAnswers
-    backendTitle: string
-    title: string
-    cover: string
-    instrument: Instrument
-    startingVoiceNote: string //TO-DO ADD TYPE
-    givenVoicePosition: VoicePosition
-    excersiseNotePosition: VoicePosition
-}
+import {VoiceNoteExcersise} from '../@types/voiceNoteExcersise'
 
 const voiceNoteExcersise1: VoiceNoteExcersise = {
     rightAnswer: "C",
@@ -54,4 +22,15 @@ const voiceNoteExcersise2: VoiceNoteExcersise = {
     excersiseNotePosition: "lowest"
 }
 
-export const voiceNoteExcersises: VoiceNoteExcersise[] = [voiceNoteExcersise1, voiceNoteExcersise2]
+const voiceNoteExcersise3: VoiceNoteExcersise = {
+    rightAnswer: "D",
+    title: "Converte nos",
+    backendTitle: "Converte_nos",
+    cover: "https://upload.wikimedia.org/wikipedia/commons/4/43/EscOrdendePredicadores2Wikipedia.png",
+    instrument: "tenor",
+    startingVoiceNote: "H",
+    givenVoicePosition: "highestMale",
+    excersiseNotePosition: "highest"
+}
+
+export const voiceNoteExcersises: VoiceNoteExcersise[] = [voiceNoteExcersise1, voiceNoteExcersise2, voiceNoteExcersise3]

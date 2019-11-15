@@ -4,13 +4,15 @@
 @import 'components/TaskCard/task-card';
 @import 'components/IntervalExcersise/interval-excersise';
 @import 'components/Header/header';
-@import 'src/excersise-wrapper';
-@import 'components/VoiceNoteExcersise/voice-note-excersise';
+@import 'src/components/ExcersiseWrapper/excersise-wrapper';
+@import 'components/VoiceNoteExcersises/voice-note-excersise';
 @import "~@blueprintjs/core/lib/css/blueprint.css";
 @import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
 @import "src/components/ExcersiseNavigationButtons/excersise-navigation-buttons";
 @import "src/components/MusicPlayer/music-player";
 
+@import "react-jinke-music-player/assets/index";
+@import 'react-piano/dist/styles';
 //== Roboto font
 @import 'fonts/roboto';
 @include font-face--roboto-300();

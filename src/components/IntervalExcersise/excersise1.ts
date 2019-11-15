@@ -1,31 +1,19 @@
-import { NoteType } from './getNote'
-import { Answers } from './answerType'
+import { IntervalExcersise } from '../@types/intervalExcersise'
 
-export type PlayingStyle = 
-| "melodic"
-| "harmonic"
-
-
-export type Excersise = {
-    notes: NoteType[],
-    playingSyle: PlayingStyle
-    rightAnswer: Answers
-}
-
-const excersise1:Excersise = {
+const excersise1: IntervalExcersise = {
     notes: ["D3", "D4"],
     playingSyle: "harmonic",
     rightAnswer: "octave"
 }
-const excersise2:Excersise = {
+const excersise2: IntervalExcersise = {
     notes: ["A3", "C4"],
     playingSyle: "melodic",
     rightAnswer: "minorThird"
 }
-const excersise3:Excersise = {
+const excersise3: IntervalExcersise = {
     notes: ["E4", "B4"],
     playingSyle: "melodic",
     rightAnswer: "fifth"
 }
 
-export const excersises: Excersise[] = [excersise1,excersise2,excersise3]
+export const excersises: IntervalExcersise[] = [excersise1,excersise2,excersise3]

@@ -1,7 +1,8 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 import IntervalExcersise from 'src/components/IntervalExcersise'
-import VoiceNoteExcersise from 'src/components/VoiceNoteExcersise'
+import VoiceNoteExcersises from 'src/components/VoiceNoteExcersises'
+import OffNoteExcersises from 'src/components/OffNoteExcersise'
 
 type Props = {
     currentURL: string
@@ -15,7 +16,11 @@ const DashboardRoutes = ({currentURL}: Props) => (
         />
         <Route
             path={`${currentURL}/voiceNote`}
-            component={VoiceNoteExcersise}
+            component={VoiceNoteExcersises}
+        />
+        <Route
+            path={`${currentURL}/off-note`}
+            component={OffNoteExcersises}
         />
     </Switch>
 )

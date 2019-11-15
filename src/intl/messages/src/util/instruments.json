@@ -6,5 +6,17 @@
   {
     "id": "soprano",
     "defaultMessage": "Soprano"
+  },
+  {
+    "id": "tenor",
+    "defaultMessage": "Tenor"
+  },
+  {
+    "id": "violoncello",
+    "defaultMessage": "Violoncello"
+  },
+  {
+    "id": "piano",
+    "defaultMessage": "Fortepian"
   }
 ]
