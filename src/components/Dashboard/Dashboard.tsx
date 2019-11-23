@@ -28,6 +28,11 @@ const Dashboard = ({ match }: RouteComponentProps) => (
                         description={"Rozpocznij swoje trzecie zadanie"}
                         elevationLevel={Elevation.THREE}
                         excersisePath={RouteBuilder.toOffNote()} />
+                    <TaskCard
+                        title={"Czwarte"}
+                        description={"Rozpocznij swoje czwarte zadanie"}
+                        elevationLevel={Elevation.THREE}
+                        excersisePath={RouteBuilder.toEnharmonics()} />
                 </DashboardContentWrapper> : null
             }
             <DashboardRoutes currentURL={match.url} />

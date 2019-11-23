@@ -1,0 +1,27 @@
+.i-enharmonic-excersise{
+
+    .i-excersise-wrapper {
+        width: 1000px;
+        max-width: unset !important;
+
+        g{
+            path{
+                pointer-events: unset !important;
+                &:hover{
+                    fill: #ffa500;
+                }
+                
+            }
+            // &.vf-note{
+            //     &:hover{
+            //     }
+            // }
+            // &.vf-stavenote{
+            //     &:hover{
+            //     }
+            // }
+        }
+    }
+
+
+}

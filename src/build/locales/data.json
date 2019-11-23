@@ -6,6 +6,8 @@
     "repeats-left": "Repeats left: {left}",
     "off-note-description": "You will hear the song {title} in key {key}{br} In {instrument} part you can hear an off-note sound. Find it and press the right key on piano keyboard",
     "repeats-left-offNote": "Repeats left: {left}",
+    "repeats-left-enharmonics": "Repeats left: {left}",
+    "check-excersise-enharmonics": "Check excersise",
     "begin-excersise": "Start",
     "voice-note-description": "You will hear the song {title}{br}{instrument} part starts from {startingNote} ({voicePosition} voice){br}{br} What is the {excersiseNotePosition} sound played by {instrument}?",
     "repeats-left-voiceNote": "Repeats left: {left}",
