@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 type Props = {
     sheetTitle: string
@@ -7,55 +7,64 @@ type Props = {
 
 const EnharmonicWrapper = ({sheetTitle, children}: Props) => {
     const [isLoading, setIsLoading] = useState<boolean>(true)
-    const [sheetId, setSheetId] = useState<string | undefined>(undefined)
     const [file, setFile] = useState<any>(undefined)
 
-    useEffect(() => {
-        function getSheetId() {
-            setIsLoading(true)
-            try {
-                fetch(`${process.env.REACT_APP_API_URL}sheets/title/${sheetTitle}`, {
-                    method: 'GET',
-                    headers: {
-                        'content-type': 'application/json',
-                        'x-auth-token': `${process.env.REACT_APP_DOWNLOAD_USER}`
-                    }
+    function getSheetId() {
+        const abortController = new AbortController()
+        const signal = abortController.signal
+        try {
+            fetch(`${process.env.REACT_APP_API_URL}sheets/title/${sheetTitle}`, {
+                method: 'GET',
+                signal: signal,
+                headers: {
+                    'content-type': 'application/json',
+                    'x-auth-token': `${process.env.REACT_APP_DOWNLOAD_USER}`
+                }
+            })
+                .then(res => res.json())
+                .then(res => {
+                    getSheetById(res)
                 })
-                    .then(res => res.json())
-                    .then(res => {
-                        setSheetId(res)
-                    })
-                    .catch(err => {
-                        throw new Error(err)
-                    })
-            } catch (error) {
-                throw new Error(error)
-            }
+                .catch(err => {
+                    throw new Error(err)
+                })
+        } catch (error) {
+            throw new Error(error)
         }
-        if (isLoading && !sheetId && !file) getSheetId()
-    })
 
-    useEffect(() => {
-        function getSheetById() {
-            try{
-                const req = new XMLHttpRequest()
-                req.open('GET', `${process.env.REACT_APP_API_URL}sheets/${sheetId}.xml`, true)
-                req.onreadystatechange = () => {
-                    if (req.readyState === 4) {
-                        if (req.status === 200) {
-                            setFile(req.responseText)
-                            setIsLoading(false)
-                        }
+        return function cleanup(){
+            abortController.abort()
+        }
+    }
+
+    function getSheetById(id:string) {
+        try {
+            const req = new XMLHttpRequest()
+            req.open('GET', `${process.env.REACT_APP_API_URL}sheets/${id}.xml`, true)
+            req.onreadystatechange = () => {
+                if (req.readyState === 4) {
+                    if (req.status === 200) {
+                        setFile(req.responseText)
+                        setIsLoading(false)
                     }
                 }
-                req.send(null)
             }
-            catch(error){
-                throw new Error(error)
-            }
+            req.send(null)
         }
-        if(sheetId && isLoading && !file)getSheetById()
-    })
+        catch (error) {
+            throw new Error(error)
+        }
+    }
+    
+    const sheetIdGetter = useCallback(() => {
+        getSheetId()
+    }, [getSheetId])
+
+    useEffect(() => {
+        if(isLoading) sheetIdGetter()
+    },[isLoading, sheetIdGetter])
+
+    useEffect(() => setIsLoading(true), [sheetTitle])
 
     return (
         children(isLoading, file)
