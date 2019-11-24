@@ -18,6 +18,7 @@ type Props = {
     drawTitle?: boolean
     file: string | Document
     repeatsLeft: number
+    isAnswerGiven: boolean
     callback?: () => void
     addExcersiseScore: () => void
     giveAnswer:(answer: string) => void
@@ -31,6 +32,7 @@ type State = {
 class OpenSheetMusicDisplay extends React.Component<Props,State> {
     osmd: OSMD | undefined
     divRef:React.RefObject<HTMLDivElement>
+    divOriRef: React.RefObject<HTMLDivElement>
     filledWithAccidentals: { id: string, acc: AccidCodes}[] = []
     checkedNotes: { id: string, acc: AccidCodes}[] = []
     allAccids: { id: string, acc: AccidCodes}[] = []
@@ -53,13 +55,13 @@ class OpenSheetMusicDisplay extends React.Component<Props,State> {
             loaded: false,
         }
         this.divRef = React.createRef()
-        this.eventListenerMethod.bind(this)
+        this.divOriRef = React.createRef()
     }
 
     async setupOsmd() {
         const options = {
             autoResize: this.props.autoResize ? this.props.autoResize : true,
-            drawTitle: this.props.drawTitle ? this.props.drawTitle : true,
+            drawTitle: false,
         }
         this.osmd = new OSMD(this.divRef.current!, options)
         this.osmd.load(this.props.file)
@@ -186,8 +188,19 @@ class OpenSheetMusicDisplay extends React.Component<Props,State> {
             )
         })
     }
+    checkIfRightAnswer(){
+        if(this.filledWithAccidentals.length !== this.checkedNotes.length) return false
+        else {
+            const num = this.filledWithAccidentals.length
+            for(let i = 0; i < num; i++) {
+                if (JSON.stringify(this.filledWithAccidentals[i]) !== JSON.stringify(this.checkedNotes[i])) return false
+                else return true
+            }
+        }
+    }
 
     onCheckClick(){
+        this.props.giveAnswer(JSON.stringify(this.checkedNotes))
         this.checkNotes()
         this.filledWithAccidentals.forEach((elem) => {
             this.setIfNoAccid(elem.id, elem.acc as AccidCodes)
@@ -204,7 +217,9 @@ class OpenSheetMusicDisplay extends React.Component<Props,State> {
             }
             else this.setNoteColor(note.id, "#C23030")
         })
-        this.removeOnClickMethods()
+        if(this.checkIfRightAnswer()) {
+            this.props.addExcersiseScore()
+        }
     }
 
     eventListenerMethod(e: Event){
@@ -217,12 +232,17 @@ class OpenSheetMusicDisplay extends React.Component<Props,State> {
 
     setOnClickMethods(){
         const svg = document.querySelector<HTMLElement>('svg')
-        svg && svg.addEventListener("click", this.eventListenerMethod, true)
+        svg && svg.addEventListener("click", (e) => this.eventListenerMethod(e), true)
     }
 
-    removeOnClickMethods(){
-        const svg = document.querySelector<HTMLElement>('svg')
-        svg && svg.removeEventListener("click", this.eventListenerMethod, true)
+    showOriginal(){
+        const options = {
+            autoResize: this.props.autoResize ? this.props.autoResize : true,
+            drawTitle: false,
+        }
+        const oriSheet = new OSMD(this.divOriRef.current!, options)
+        oriSheet.load(this.props.file)
+            .then(() => oriSheet.render())
     }
 
     async componentDidMount() {
@@ -235,6 +255,7 @@ class OpenSheetMusicDisplay extends React.Component<Props,State> {
         return (
             <>
                 <div ref={this.divRef} />
+                <div ref={this.divOriRef} />
                 <div className="m-grid m-grid__item--center">
                     <FormattedMessage
                         id="repeats-left-enharmonics"
@@ -242,15 +263,31 @@ class OpenSheetMusicDisplay extends React.Component<Props,State> {
                         values={{ left: this.props.repeatsLeft }}
                     />
                 </div>
-                <Button 
-                    onClick={
-                        () => this.onCheckClick()
-                    }
-                >
-                    <FormattedMessage
-                        id="check-excersise-enharmonics"
-                        defaultMessage="Check excersise" />
-                </Button>
+                <div className= "i-enharmonic-excersise__score-buttons m-grid m-grid-ver">
+                    <Button
+                        onClick={
+                            () => this.onCheckClick()
+                        }
+                        disabled={this.props.isAnswerGiven}
+                        active={this.props.isAnswerGiven}
+                    >
+                        <FormattedMessage
+                            id="check-excersise-enharmonics"
+                            defaultMessage="Check excersise" />
+                    </Button>
+                    <Button
+                        onClick={
+                            () => {
+                                this.showOriginal()
+                                this.onCheckClick()
+                            }
+                        }
+                    >
+                        <FormattedMessage
+                            id="show-original-enharmonics"
+                            defaultMessage="Show original" />
+                    </Button>
+                </div>
             </>
         )
     }

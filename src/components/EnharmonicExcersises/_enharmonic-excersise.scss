@@ -1,27 +1,30 @@
 .i-enharmonic-excersise{
-
     .i-excersise-wrapper {
-        width: 1000px;
         max-width: unset !important;
 
-        g{
-            path{
-                pointer-events: unset !important;
-                &:hover{
-                    fill: #ffa500;
+        .i-enharmonic__content{
+            width:1000px;
+            g {
+                g:nth-child(1) {
+                    path {
+                        &:hover {
+                            fill: #ffa500;
+                        }
+
+                    }
                 }
-                
             }
-            // &.vf-note{
-            //     &:hover{
-            //     }
-            // }
-            // &.vf-stavenote{
-            //     &:hover{
-            //     }
-            // }
+            .i-enharmonic-excersise__score-buttons{
+                display:flex;
+                flex-direction: row;
+                justify-content: center;
+                margin-top: 20px;
+                
+                >button{
+                    margin-right: 15px;
+                }
+            }
         }
+        
     }
-
-
 }

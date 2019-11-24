@@ -28,6 +28,7 @@ const ExcersiseMain = ({ children, repeats, excersise, resetScore }: Props) => {
     const memoizedResetScore = useCallback(() => {
         resetScore()
     }, [resetScore])
+    
     useEffect(() => {
         memoizedResetScore()
     }, [memoizedResetScore])

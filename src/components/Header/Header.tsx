@@ -5,14 +5,15 @@ import {ActionType} from 'src/actions/ActionInterfaces'
 import { changeLang } from 'src/actions'
 import clefLogo from 'src/images/icon.png'
 import ReactFlagsSelect from 'react-flags-select'
-import { Link } from 'react-router-dom'
+import { Link, withRouter, RouteComponentProps } from 'react-router-dom'
 import { LangType } from 'src/components/LanguageProvider/LanguageProvider'
 
 type Props = {
     lang: string
     changeLang: (lang: LangType) => void
-}
-const Header = ({lang, changeLang}: Props) => (
+}& RouteComponentProps
+
+const Header = ({lang, changeLang, location}: Props) => (
     <div className= "m-grid m-grid__item m-grid__item--top i-header">
         <div className= "m-grid m-grid__item--center m-grid--ver m-grid__item i-header__content">
                 <Link
@@ -22,6 +23,7 @@ const Header = ({lang, changeLang}: Props) => (
                 </Link>
             <div className="m-grid m-grid--hor m-grid__item--center m-grid__item i-header__lang-select">
                 <ReactFlagsSelect
+                    disabled={location.pathname !== "/dashboard"}
                     countries={["PL", "GB"]}
                     customLabels={{"GB": "EN-GB", "PL": "PL"}}
                     defaultCountry={lang === "en" ? "GB" : lang.toUpperCase()}
@@ -44,4 +46,4 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => ({
     changeLang: (lang: LangType) => dispatch(changeLang(lang))
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(Header)
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Header))

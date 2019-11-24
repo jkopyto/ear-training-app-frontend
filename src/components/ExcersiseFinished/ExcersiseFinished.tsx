@@ -14,22 +14,25 @@ type Props = {
 }& RouteComponentProps
 
 const ExcersiseFinished = ({intl, score, history}: Props) => (
-    <>
+    <div className= "i-excersise-finished">
         <FormattedMessage
             id="excersise-finished"
-            defaultMessage="Congratulations. you've finished this excersise">
+            defaultMessage="Congratulations. You've finished this excersise">
                 {msg => <p>{msg}</p>}
         </FormattedMessage>
         <FormattedMessage
             id="finish-score"
-            defaultMessage={`Your score is: {score}`}
-            values={{score}}
+            defaultMessage={`{br}Your score is: {score}`}
+            values={{
+                score: <strong>{score}</strong>,
+                br: <br />
+            }}
         />
         <Button
             onClick={() => history.push(RouteBuilder.toDashboard())}>
             {intl.formatMessage(commonMessages.backToMain)}
         </Button>
-    </>
+    </div>
 )
 
 const mapStateToProps = (state:AppState) => ({
