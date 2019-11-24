@@ -19,6 +19,8 @@
     "classnames": "^2.2.6",
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-prettier": "^3.1.1",
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1",
     "lodash": "^4.17.15",
     "midi-sounds-react": "^1.2.54",
     "node-sass": "^4.13.0",
@@ -43,7 +45,8 @@
     "xml2json": "^0.11.2"
   },
   "scripts": {
-    "start": "npm run build-langs && react-app-rewired start && react-scripts --max_old_space_size=4096 start",
+    "start-dev": "npm run build-langs && react-app-rewired start",
+    "start": "node server.js",
     "build": "npm run build-langs && react-app-rewired build",
     "build-langs": "node ./scripts/mergeMessages.js",
     "test": "react-scripts test",
