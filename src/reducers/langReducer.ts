@@ -6,7 +6,7 @@ export const LangReducer = (
     state: {
         lang: LangType
     } = {
-        lang: "en"
+        lang: "pl"
     },
     action: ActionType
 ) => {

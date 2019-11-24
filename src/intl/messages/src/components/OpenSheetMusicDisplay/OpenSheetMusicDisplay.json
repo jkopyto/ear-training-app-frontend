@@ -1,0 +1,14 @@
+[
+  {
+    "id": "repeats-left-enharmonics",
+    "defaultMessage": "Repeats left: {left}"
+  },
+  {
+    "id": "check-excersise-enharmonics",
+    "defaultMessage": "Check excersise"
+  },
+  {
+    "id": "show-original-enharmonics",
+    "defaultMessage": "Show original"
+  }
+]

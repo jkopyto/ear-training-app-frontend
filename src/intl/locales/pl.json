@@ -22,7 +22,7 @@
     "back-to-main": "Strona główna",
     "play": "Odtwórz",
     "excersise-finished": "Gratulacje! Udało Ci się ukończyć to zadanie",
-    "finish-score": "Twój wynik to: {score}",
+    "finish-score": "{br}Twój wynik to: {score}",
     "highest": "najwyższy",
     "lowest": "najniższy",
     "french-horn": "Waltornia",
@@ -39,5 +39,16 @@
     "highestMale": "najwyższy męski",
     "lowestMale": "najniższy męski",
     "highestFemale": "najwyższy żeński",
-    "lowestFemale": "najniższy żeński"
+    "lowestFemale": "najniższy żeński",
+    "repeats-left-enharmonics": "Pozostało powtórzeń: {left}",
+    "check-excersise-enharmonics": "Sprawdź zadanie",
+    "show-original-enharmonics": "Pokaż oryginał",
+    "interval-excersise": "Rozpoznawanie interwałów",
+    "voice-note": "Wskaż poprawny dźwięk",
+    "off-note": "Wskaż dźwięk obcy",
+    "enharmonic-excersise": "Uzupełnij brakujące znaki",
+    "interval-excersise-description": "Usłyszysz kilka razy interwał grany melodycznie lub harmonicznie. Wskaż poprawną odpowiedź",
+    "voice-note-dashboard-description": "Usłyszysz kilkukrotnie utwór. Wybierz odpowiedni dźwięk wskazany w poleceniu",
+    "off-note-excersise-description": "Usłyszysz kilkukrotnie utwór. Wskaż dźwięk obcy",
+    "enharmonic-excersise-description": "Uzupełnij brakujące znaki enharmoniczne"
 }

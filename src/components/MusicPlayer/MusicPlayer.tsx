@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ReactJkMusicPlayer from "react-jinke-music-player"
 
-const fetchLink = 'https://ear-trainer-api.herokuapp.com/api/tracks/'
 type Props = {
     title: string
     cover: string
@@ -18,11 +17,11 @@ const MusicPlayer = ({ title, showPlay, onAudioStop, cover, backendTitle}: Props
         async function getTrackId() {
             setIsLoading(true)
             try {
-                fetch(`${fetchLink}title/${backendTitle}`, {
+                fetch(`${process.env.REACT_APP_API_URL}tracks/title/${backendTitle}`, {
                     method: 'GET',
                     headers: {
                         'content-type': 'application/json',
-                        'x-auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZGM4NDcxNWYzMzI5ZDAwMTdiZTg0MjYiLCJpYXQiOjE1NzM0MDY2ODN9.Wmijm5vRdM2BajZE-3XciVWhDmJDTGEjbCETGgcUI0k'
+                        'x-auth-token': `${process.env.REACT_APP_DOWNLOAD_USER}`
                     }
                 })
                 .then(res => res.json())
@@ -39,6 +38,7 @@ const MusicPlayer = ({ title, showPlay, onAudioStop, cover, backendTitle}: Props
         }
         getTrackId()
     },[backendTitle])
+    
     return (
         !isLoading ? 
         <ReactJkMusicPlayer
@@ -46,8 +46,7 @@ const MusicPlayer = ({ title, showPlay, onAudioStop, cover, backendTitle}: Props
                 name: title,
                 cover: cover,
                 musicSrc: () => {
-                    console.log(`${fetchLink}${trackId}.mp3`)
-                    return Promise.resolve(`${fetchLink}${trackId}.mp3`)
+                    return Promise.resolve(`${process.env.REACT_APP_API_URL}tracks/${trackId}.mp3`)
                 }
             }]}
             defaultPlayIndex={0}

@@ -49,7 +49,7 @@ const VoiceNoteExcersises = ({intl}: InjectedIntlProps) => (
                     cover={(excersise as VoiceNoteExcersise).cover}
                     backendTitle={(excersise as VoiceNoteExcersise).backendTitle}
                     onAudioStop={decreaseRepeats}
-                    showPlay={repeatsLeft !== 0 || !givenAnswer}
+                    showPlay={repeatsLeft !== 0 || !!givenAnswer}
                 />
             </>
         )}
