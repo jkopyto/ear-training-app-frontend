@@ -21,7 +21,7 @@ const VoiceNoteExcersisePianoKeyboard = ({ rightAnswer, givenAnswer, giveAnswer,
                 const pianoKey = key.firstElementChild!.innerHTML
                 if (pianoKey === rightAnswer) {
                     key.classList.add("ReactPiano__Key--true")
-                    if(clickedKey===rightAnswer) {
+                    if(clickedKey===rightAnswer && !givenAnswer) {
                         onRightAnswer()
                     }
                 }
