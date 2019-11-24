@@ -6,7 +6,7 @@ module.exports = {
         filename: 'app.bundle.js'
     },
 
-    mode: "development",
+    mode: "production",
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",

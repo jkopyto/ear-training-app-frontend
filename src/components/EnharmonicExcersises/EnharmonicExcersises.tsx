@@ -13,7 +13,7 @@ const EnharmonicExcersises = () => {
         <div className="i-enharmonic-excersise">    
             <ExcersiseMain
                 excersise={Excersises}
-                repeats={1}
+                repeats={8}
             >
                 {(excersise, addExcersiseScore, giveAnswer, repeatsLeft, decreaseRepeats, givenAnswer) => (
                         <EnharmonicWrapper
