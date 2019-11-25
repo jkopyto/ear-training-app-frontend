@@ -8,7 +8,7 @@ const voiceNoteExcersise1: VoiceNoteExcersise = {
     instrument: "frenchHorn",
     startingVoiceNote: "G",
     givenVoicePosition: "highest",
-    excersiseNotePosition: "lowest"
+    excersiseNotePosition: "highest"
 }
 
 const voiceNoteExcersise2: VoiceNoteExcersise = {
