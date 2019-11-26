@@ -33,7 +33,7 @@ const IntervalExcersise = ({ resetScore}: Props) => {
             isLastExcersise={excersiseNumber === excersises.length}
             goNextQuestion={goNextQuestion}
             giveAnswer={giveAnswer}
-            className={isGivenAnswer && excersises[excersiseNumber].playingSyle === "melodic" ? "i-interval__score--expand" : ""} />
+            className={isGivenAnswer && excersises[excersiseNumber].playingStyle === "melodic" ? "i-interval__score--expand" : ""} />
     )
 }
 

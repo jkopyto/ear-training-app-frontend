@@ -27,7 +27,7 @@ const IntervalExcersiseRenderer = ({ excersise, isLastExcersise, goNextQuestion,
         () => {
             !isLastExcersise && vexFlowRenderer(
             excersise.notes,
-            excersise.playingSyle,
+            excersise.playingStyle,
             givenAnswer
         )
         },[excersise,givenAnswer, isLastExcersise]
@@ -63,7 +63,7 @@ const IntervalExcersiseRenderer = ({ excersise, isLastExcersise, goNextQuestion,
                 <PlayInstrument
                     isPlayButtonUnlocked={!givenAnswer}
                     notes={excersise.notes}
-                    playStyle={excersise.playingSyle}
+                    playStyle={excersise.playingStyle}
                     noteDuration={0.7}
                     numberOfRepeats={6} />
                 <ExcersiseNavigationButtons 

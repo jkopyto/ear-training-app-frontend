@@ -4,6 +4,6 @@ import { NoteType } from "./noteType"
 
 export type IntervalExcersise = {
     notes: NoteType[],
-    playingSyle: PlayingStyle
+    playingStyle: PlayingStyle
     rightAnswer: Answers
 }
