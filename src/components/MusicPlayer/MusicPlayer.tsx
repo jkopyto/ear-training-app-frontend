@@ -25,7 +25,6 @@ const MusicPlayer = ({ title, showPlay, onAudioStop, backendTitle}: Props) => {
                 })
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res)
                     setAudio(res)
                     setIsLoading(false)
                 })
