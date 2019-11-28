@@ -34,6 +34,6 @@ export const excersiseDescriptions = defineMessages({
     },
     enharmonic: {
         id: "enharmonic-excersise-description",
-        defaultMessage: "Complete missing enharmonics signs"
+        defaultMessage: "Complete missing chromatic signs"
     }
 })

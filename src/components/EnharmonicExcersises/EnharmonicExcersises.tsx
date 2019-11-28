@@ -33,7 +33,6 @@ const EnharmonicExcersises = () => {
                                             repeatsLeft={repeatsLeft} />
                                         <MusicPlayer
                                             title={(excersise as EnharmonicExcersise).title}
-                                            cover={"https://previews.123rf.com/images/asmati/asmati1706/asmati170606048/80930477-music-violin-clef-sign-g-clef-treble-clef-vector-white-icon-with-soft-shadow-on-transparent-backgrou.jpg"}
                                             backendTitle={(excersise as EnharmonicExcersise).backendTitle}
                                             onAudioStop={decreaseRepeats}
                                             showPlay={repeatsLeft !== 0 || !!givenAnswer}

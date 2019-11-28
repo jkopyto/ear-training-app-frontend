@@ -3,18 +3,17 @@ import ReactJkMusicPlayer from "react-jinke-music-player"
 
 type Props = {
     title: string
-    cover: string
     backendTitle: string
     showPlay: boolean
     onAudioStop: () => void
 }
 
-const MusicPlayer = ({ title, showPlay, onAudioStop, cover, backendTitle}: Props) => {
-    const [trackId,setTrackId] = useState<string>('')
+const MusicPlayer = ({ title, showPlay, onAudioStop, backendTitle}: Props) => {
+    const [audio, setAudio] = useState<any>('')
     const [isLoading, setIsLoading] = useState<boolean>(true)
 
     useEffect(() => {
-        async function getTrackId() {
+        async function getAudio() {
             setIsLoading(true)
             try {
                 fetch(`${process.env.REACT_APP_API_URL}tracks/title/${backendTitle}`, {
@@ -26,7 +25,8 @@ const MusicPlayer = ({ title, showPlay, onAudioStop, cover, backendTitle}: Props
                 })
                 .then(res => res.json())
                 .then(res => {
-                    setTrackId(res)
+                    console.log(res)
+                    setAudio(res)
                     setIsLoading(false)
                 })
                 .catch(err => {
@@ -36,7 +36,7 @@ const MusicPlayer = ({ title, showPlay, onAudioStop, cover, backendTitle}: Props
                 throw new Error(error)
             }
         }
-        getTrackId()
+        getAudio()
     },[backendTitle])
     
     return (
@@ -44,9 +44,9 @@ const MusicPlayer = ({ title, showPlay, onAudioStop, cover, backendTitle}: Props
         <ReactJkMusicPlayer
             audioLists={[{
                 name: title,
-                cover: cover,
+                cover: audio.cover,
                 musicSrc: () => {
-                    return Promise.resolve(`${process.env.REACT_APP_API_URL}tracks/${trackId}.mp3`)
+                    return Promise.resolve(`${process.env.REACT_APP_API_URL}tracks/${audio._id}.mp3`)
                 }
             }]}
             defaultPlayIndex={0}

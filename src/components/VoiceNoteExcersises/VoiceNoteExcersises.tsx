@@ -46,7 +46,6 @@ const VoiceNoteExcersises = ({intl}: InjectedIntlProps) => (
                 </div>
                 <MusicPlayer
                     title={(excersise as VoiceNoteExcersise).title}
-                    cover={(excersise as VoiceNoteExcersise).cover}
                     backendTitle={(excersise as VoiceNoteExcersise).backendTitle}
                     onAudioStop={decreaseRepeats}
                     showPlay={repeatsLeft !== 0 || !!givenAnswer}

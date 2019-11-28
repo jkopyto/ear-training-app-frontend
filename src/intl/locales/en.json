@@ -6,7 +6,7 @@
   "interval-excersise-description": "You will heard some intervals played melodically or harmonically. Choose right answer",
   "voice-note-dashboard-description": "You will hear a song. Choose the right note pointed in excersise",
   "off-note-excersise-description": "In song that you will heard is located an off-note. Find it",
-  "enharmonic-excersise-description": "Complete missing enharmonics signs",
+  "enharmonic-excersise-description": "Complete missing chromatic signs",
   "excersise-finished": "Congratulations. You've finished this excersise",
   "finish-score": "{br}Your score is: {score}",
   "play": "Play",

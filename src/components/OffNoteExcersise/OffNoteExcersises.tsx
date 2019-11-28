@@ -40,7 +40,6 @@ const OffNoteExcersises = ({ intl }: InjectedIntlProps) => (
                 </div>
                 <MusicPlayer
                     title={(excersise as OffNoteExcersise).title}
-                    cover={(excersise as OffNoteExcersise).cover}
                     backendTitle={(excersise as OffNoteExcersise).backendTitle}
                     onAudioStop={decreaseRepeats}
                     showPlay={repeatsLeft !== 0 || !givenAnswer}

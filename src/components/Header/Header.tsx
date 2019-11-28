@@ -21,7 +21,7 @@ const Header = ({lang, changeLang, location}: Props) => (
                     className="m-grid m-grid__item i-header__logo--wrapper">
                     <img src={clefLogo} alt="" className="m-grid__item i-header__logo" />
                 </Link>
-            <div className="m-grid m-grid--hor m-grid__item--center m-grid__item i-header__lang-select">
+            <div className={`m-grid m-grid--hor m-grid__item--center m-grid__item i-header__lang-select ${location.pathname !== "/dashboard" ? "i-header__lang-select--disabled" : ""}`}>
                 <ReactFlagsSelect
                     disabled={location.pathname !== "/dashboard"}
                     countries={["PL", "GB"]}

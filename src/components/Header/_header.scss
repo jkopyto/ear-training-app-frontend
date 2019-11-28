@@ -26,6 +26,11 @@
             height: 70px;
             position: absolute;
             right: 15px;
+
+            &.i-header__lang-select--disabled {
+                filter: grayscale(1);
+            }
+
             .flag-select {
                 position: relative;
                 display: block;
