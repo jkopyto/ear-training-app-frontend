@@ -7,9 +7,9 @@ import {withRouter, RouteComponentProps } from 'react-router-dom'
 import DashboardRoutes from './DashboardRoutes'
 import Header from 'src/components/Header'
 import {excersiseTitles, excersiseDescriptions} from './tasks'
-import { injectIntl, InjectedIntlProps } from 'react-intl'
+import { injectIntl, WrappedComponentProps } from 'react-intl'
 
-const Dashboard = ({ match, intl}: RouteComponentProps & InjectedIntlProps) => (
+const Dashboard = ({ match, intl}: RouteComponentProps & WrappedComponentProps) => (
     <div className= "m-grid i-dashboard-container">
         <Header />
         <div className= "m-grid m-grid__item--center m-grid--hor i-dashboard-content">

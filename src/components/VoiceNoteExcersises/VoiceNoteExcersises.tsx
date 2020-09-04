@@ -1,14 +1,14 @@
 import React from 'react'
 import ExcersiseMain from '../ExcersiseTemplate/ExcersiseMain'
 import { voiceNoteExcersises } from './voiceNoteExcersise'
-import { InjectedIntlProps, FormattedMessage, injectIntl } from 'react-intl'
+import { FormattedMessage, injectIntl, WrappedComponentProps } from 'react-intl'
 import VoiceNoteExcersisePianoKeyboard from './VoiceNoteExcersisePianoKeyboard'
 import MusicPlayer from 'src/components/MusicPlayer/MusicPlayer'
 import { VoiceNoteExcersise } from '../@types/voiceNoteExcersise'
 import messages from 'src/util/instruments'
 import { humanVoices } from 'src/util/humanVoices'
 
-const VoiceNoteExcersises = ({intl}: InjectedIntlProps) => (
+const VoiceNoteExcersises = ({intl}: WrappedComponentProps) => (
     <ExcersiseMain
         excersise={voiceNoteExcersises}
         repeats={3}
@@ -19,11 +19,11 @@ const VoiceNoteExcersises = ({intl}: InjectedIntlProps) => (
                     id="voice-note-description"
                     defaultMessage="You will hear the song {title}{br}{instrument} part starts from {startingNote} ({voicePosition} voice){br}{br} What is the {excersiseNotePosition} sound played by {instrument}?"
                     values={{
-                        title: <><strong>{(excersise as VoiceNoteExcersise).title}</strong><br /></>,
-                        instrument: <strong>{intl.formatMessage(messages[(excersise as VoiceNoteExcersise).instrument])}</strong>,
-                        startingNote: <strong>{(excersise as VoiceNoteExcersise).startingVoiceNote}</strong>,
-                        voicePosition: <strong>{intl.formatMessage(humanVoices[(excersise as VoiceNoteExcersise).givenVoicePosition])}</strong>,
-                        excersiseNotePosition: <strong>{intl.formatMessage(humanVoices[(excersise as VoiceNoteExcersise).excersiseNotePosition])}</strong>,
+                        title: <><b>{(excersise as VoiceNoteExcersise).title}</b><br /></>,
+                        instrument: <b>{intl.formatMessage(messages[(excersise as VoiceNoteExcersise).instrument])}</b>,
+                        startingNote: <b>{(excersise as VoiceNoteExcersise).startingVoiceNote}</b>,
+                        voicePosition: <b>{intl.formatMessage(humanVoices[(excersise as VoiceNoteExcersise).givenVoicePosition])}</b>,
+                        excersiseNotePosition: <b>{intl.formatMessage(humanVoices[(excersise as VoiceNoteExcersise).excersiseNotePosition])}</b>,
                         br: <br />
                     }}
                 />

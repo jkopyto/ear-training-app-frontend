@@ -1,17 +1,10 @@
 import React from 'react'
-import { OpenSheetMusicDisplay as OSMD, GraphicalNote, VexFlowGraphicalNote } from 'opensheetmusicdisplay'
+import { OpenSheetMusicDisplay as OSMD } from 'opensheetmusicdisplay'
 import Vex from 'vexflow'
 import { FormattedMessage } from 'react-intl'
 import { Button } from '@blueprintjs/core'
-
-declare module 'opensheetmusicdisplay' {
-    class VexFlowGraphicalNote extends GraphicalNote {
-        vfnote: [any, number];
-    }
-}
-
-type AccidCodes = 'v18'| 'v44'| 'v4e'| 'v7f'| 'v26'
-type Accids = '#'| 'b'| 'n'| '##'| 'bb'
+import GraphicalNoteExtended from './GraphicalNoteExtended'
+import { AccidCodes, mappedAccidentalsCodes, accidentalsArray, codeToAccidental } from './utils'
 
 type Props = {
     autoResize?: boolean
@@ -36,17 +29,6 @@ class OpenSheetMusicDisplay extends React.Component<Props,State> {
     filledWithAccidentals: { id: string, acc: AccidCodes}[] = []
     checkedNotes: { id: string, acc: AccidCodes}[] = []
     allAccids: { id: string, acc: AccidCodes}[] = []
-    
-    //These arrays below needs to have the same length
-    private accidentalsArray: Accids[] = ['#','b','n','##','bb']
-    private mappedAccidentalsCodes: AccidCodes[] = ['v18','v44','v4e','v7f','v26']
-    private codeToAccidental = {
-        "v18": "#",
-        "v7f": "##",
-        "v44": "b",
-        "v26": "bb",
-        "v4e": "n",
-    }
 
     constructor(props: Props) {
         super(props)
@@ -64,7 +46,7 @@ class OpenSheetMusicDisplay extends React.Component<Props,State> {
             drawTitle: false,
         }
         this.osmd = new OSMD(this.divRef.current!, options)
-        this.osmd.load(this.props.file)
+        await this.osmd.load(this.props.file)
             .then(() => this.osmd!.render())
     }
 
@@ -75,23 +57,22 @@ class OpenSheetMusicDisplay extends React.Component<Props,State> {
     }
 
     setAccidentalOnGivenId(id: string){
-        this.osmd!.GraphicSheet.MeasureList.forEach((elem: any) => {
-            elem.forEach((elem: any) =>
-                elem.staffEntries.forEach((elem: any) => {
-                    const note: GraphicalNote = elem.graphicalVoiceEntries[0].notes[0]
-                    const vexFlowNote: VexFlowGraphicalNote = note as VexFlowGraphicalNote
-                    if (vexFlowNote.vfnote !== undefined) {
-                        if (vexFlowNote.vfnote[0].getAttribute('id') === id.slice(3)) {
-                            const accidental = vexFlowNote.vfnote[0].getAccidentals()
-                            if (accidental === undefined) vexFlowNote.vfnote[0].addAccidental(vexFlowNote.vfnote[1], new Vex.Flow.Accidental('#'))
-                            else if (accidental) {
-                                const num = this.mappedAccidentalsCodes.indexOf(accidental[0].accidental.code)
-                                if(num < this.mappedAccidentalsCodes.length - 1){ 
-                                    vexFlowNote.vfnote[0].modifiers = []
-                                    vexFlowNote.vfnote[0].addAccidental(vexFlowNote.vfnote[1], new Vex.Flow.Accidental(this.accidentalsArray[num+1]))
-                                }
-                                else vexFlowNote.vfnote[0].modifiers = []
+        this.osmd!.GraphicSheet.MeasureList.forEach((elem) => {
+            elem.forEach((elem) =>
+                elem.staffEntries.forEach((elem) => {
+                    const vexFlowNote = elem.graphicalVoiceEntries[0].notes[0] as GraphicalNoteExtended
+
+                    if (vexFlowNote.vfnote !== undefined && vexFlowNote.vfnote[0].getAttribute('id') === id.slice(3)) {
+                        const accidental = vexFlowNote.vfnote[0].getAccidentals()
+
+                        if (accidental === undefined) vexFlowNote.vfnote[0].addAccidental(vexFlowNote.vfnote[1], new Vex.Flow.Accidental('#'))
+                        else if (accidental) {
+                            const num = mappedAccidentalsCodes.indexOf(accidental[0].accidental.code)
+                            if(num < mappedAccidentalsCodes.length - 1){ 
+                                vexFlowNote.vfnote[0].modifiers = []
+                                vexFlowNote.vfnote[0].addAccidental(vexFlowNote.vfnote[1], new Vex.Flow.Accidental(accidentalsArray[num+1]))
                             }
+                            else vexFlowNote.vfnote[0].modifiers = []
                         }
                     }
                 })
@@ -104,13 +85,13 @@ class OpenSheetMusicDisplay extends React.Component<Props,State> {
         this.osmd!.GraphicSheet.MeasureList.forEach((elem: any) => {
             elem.forEach((elem: any) =>
                 elem.staffEntries.forEach((elem: any) => {
-                    const note: GraphicalNote = elem.graphicalVoiceEntries[0].notes[0]
-                    const vexFlowNote: VexFlowGraphicalNote = note as VexFlowGraphicalNote
+                    const note = elem.graphicalVoiceEntries[0].notes[0]
+                    const vexFlowNote = note
                     if (vexFlowNote.vfnote !== undefined) {
                         if (vexFlowNote.vfnote[0].getAttribute('id') === id) {
                             const accidental = vexFlowNote.vfnote[0].getAccidentals()
                             if (!accidental){
-                                vexFlowNote.vfnote[0].addAccidental(vexFlowNote.vfnote[1], new Vex.Flow.Accidental(this.codeToAccidental[accid]))
+                                vexFlowNote.vfnote[0].addAccidental(vexFlowNote.vfnote[1], new Vex.Flow.Accidental(codeToAccidental[accid]))
                             }
                         }
                     }
@@ -120,15 +101,16 @@ class OpenSheetMusicDisplay extends React.Component<Props,State> {
     }
     
     getStartedAccidentalsAndClear(){
-        this.osmd!.GraphicSheet.MeasureList.forEach((elem:any) => {
-            elem.forEach((elem: any) => 
-                elem.staffEntries.forEach((elem: any) => {
-                    const note:GraphicalNote =  elem.graphicalVoiceEntries[0].notes[0]
-                    const vexFlowNote: VexFlowGraphicalNote = note as VexFlowGraphicalNote
+        this.osmd!.GraphicSheet.MeasureList.forEach((elem) => {
+            elem.forEach((elem) => 
+                elem.staffEntries.forEach((elem) => {
+                    const vexFlowNote = elem.graphicalVoiceEntries[0].notes[0] as GraphicalNoteExtended
+
                     if (vexFlowNote.vfnote !== undefined){
-                        const accidentals = vexFlowNote.vfnote[0].getAccidentals()
-                        if(accidentals){
-                            this.filledWithAccidentals.push({id: vexFlowNote.vfnote[0].getAttribute('id'), acc: accidentals[0].accidental.code })
+                        const accidental = vexFlowNote.vfnote[0].getAccidentals()
+                        const accid = accidental && Object.entries(codeToAccidental).find((val) => val[1] === accidental[0].type)
+                        if(accid){
+                            this.filledWithAccidentals.push({id: vexFlowNote.vfnote[0].getAttribute('id'), acc: accid[0] as AccidCodes })
                             vexFlowNote.vfnote[0].modifiers=[]
                         }
                     }
@@ -139,11 +121,11 @@ class OpenSheetMusicDisplay extends React.Component<Props,State> {
     }
 
     setNoteColor(id: string, color: string){
-        this.osmd!.GraphicSheet.MeasureList.forEach((elem: any) => {
-            elem.forEach((elem: any) =>
-                elem.staffEntries.forEach((elem: any) => {
-                    const note: GraphicalNote = elem.graphicalVoiceEntries[0].notes[0]
-                    const vexFlowNote: VexFlowGraphicalNote = note as VexFlowGraphicalNote
+        this.osmd!.GraphicSheet.MeasureList.forEach((elem) => {
+            elem.forEach((elem) =>
+                elem.staffEntries.forEach((elem) => {
+                    const vexFlowNote = elem.graphicalVoiceEntries[0].notes[0] as GraphicalNoteExtended
+
                     if (vexFlowNote.vfnote !== undefined) {
                         if (vexFlowNote.vfnote[0].getAttribute('id') === id) {
                             document.getElementById(`vf-${id}`)!.children[1]!.children[0]!.setAttribute("fill", color)
@@ -155,11 +137,11 @@ class OpenSheetMusicDisplay extends React.Component<Props,State> {
     }
 
     getAllAccids(){
-        this.osmd!.GraphicSheet.MeasureList.forEach((elem: any) => {
-            elem.forEach((elem: any) =>
-                elem.staffEntries.forEach((elem: any) => {
-                    const note: GraphicalNote = elem.graphicalVoiceEntries[0].notes[0]
-                    const vexFlowNote: VexFlowGraphicalNote = note as VexFlowGraphicalNote
+        this.osmd!.GraphicSheet.MeasureList.forEach((elem) => {
+            elem.forEach((elem) =>
+                elem.staffEntries.forEach((elem) => {
+                    const vexFlowNote = elem.graphicalVoiceEntries[0].notes[0] as GraphicalNoteExtended
+                   
                     if (vexFlowNote.vfnote !== undefined) {
                         const accidentals = vexFlowNote.vfnote[0].getAccidentals()
                         if (accidentals) {
@@ -176,8 +158,8 @@ class OpenSheetMusicDisplay extends React.Component<Props,State> {
         this.osmd!.GraphicSheet.MeasureList.forEach((elem: any) => {
             elem.forEach((elem: any) =>
                 elem.staffEntries.forEach((elem: any) => {
-                    const note: GraphicalNote = elem.graphicalVoiceEntries[0].notes[0]
-                    const vexFlowNote: VexFlowGraphicalNote = note as VexFlowGraphicalNote
+                    const note = elem.graphicalVoiceEntries[0].notes[0]
+                    const vexFlowNote = note
                     if (vexFlowNote.vfnote !== undefined) {
                         const accidentals = vexFlowNote.vfnote[0].getAccidentals()
                         if (accidentals) {
@@ -222,17 +204,16 @@ class OpenSheetMusicDisplay extends React.Component<Props,State> {
         }
     }
 
-    eventListenerMethod(e: Event){
+    eventListenerMethod = (e: MouseEvent) => {
         const path = e.target as HTMLElement
-        if (path && path.parentElement && path.parentElement.parentElement && path.parentElement.parentElement.parentElement) {
-            const note = path.parentElement.parentElement.parentElement as HTMLElement
+        const note = path?.parentElement?.parentElement?.parentElement
+        if (note) {
             note.classList.contains("vf-stavenote") && this.setAccidentalOnGivenId(note.id)
         }
     }
 
     setOnClickMethods(){
-        const svg = document.querySelector<HTMLElement>('svg')
-        svg && svg.addEventListener("click", (e) => this.eventListenerMethod(e), true)
+        if(this.divRef && this.divRef.current) this.divRef.current.onclick = this.eventListenerMethod
     }
 
     showOriginal(){
@@ -247,7 +228,7 @@ class OpenSheetMusicDisplay extends React.Component<Props,State> {
 
     async componentDidMount() {
         await this.setupOsmd()
-        await this.getStartedAccidentalsAndClear()
+        this.getStartedAccidentalsAndClear()
         this.setOnClickMethods()
     }
 

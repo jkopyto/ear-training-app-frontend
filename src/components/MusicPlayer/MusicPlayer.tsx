@@ -54,7 +54,6 @@ const MusicPlayer = ({ title, showPlay, onAudioStop, backendTitle}: Props) => {
             mode='full'
             autoPlay={false}
             showPlay={showPlay}
-            showDownload={true}
             onAudioEnded={onAudioStop}
             showThemeSwitch={false}
             glassBg={true}
@@ -62,7 +61,6 @@ const MusicPlayer = ({ title, showPlay, onAudioStop, backendTitle}: Props) => {
             toggleMode={false}
             showReload={false}
             showPlayMode={false}
-            playModeText={undefined}
         />
         : null
     )

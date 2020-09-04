@@ -1,6 +1,6 @@
 import React from 'react'
 import ExcersiseMain from '../ExcersiseTemplate/ExcersiseMain'
-import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl'
+import { FormattedMessage, injectIntl, WrappedComponentProps } from 'react-intl'
 import VoiceNoteExcersisePianoKeyboard from '../VoiceNoteExcersises/VoiceNoteExcersisePianoKeyboard'
 import instruments from 'src/util/instruments'
 import keys from 'src/util/keys'
@@ -8,7 +8,7 @@ import { OffNoteExcersise } from '../@types/offNoteExcersise'
 import MusicPlayer from '../MusicPlayer/MusicPlayer'
 import {offNoteExcersises} from './offNoteExcersises'
 
-const OffNoteExcersises = ({ intl }: InjectedIntlProps) => (
+const OffNoteExcersises = ({ intl }: WrappedComponentProps) => (
     <ExcersiseMain
         excersise={offNoteExcersises}
         repeats={3}
@@ -19,9 +19,9 @@ const OffNoteExcersises = ({ intl }: InjectedIntlProps) => (
                     id="off-note-description"
                     defaultMessage="You will hear the song {title} in key {key}{br} In {instrument} part you can hear an off-note sound. Find it and press the right key on piano keyboard"
                     values={{
-                        title: <strong>{(excersise as OffNoteExcersise).title}</strong>,
-                        instrument: <strong>{intl.formatMessage(instruments[(excersise as OffNoteExcersise).instrument])}</strong>,
-                        key: <strong>{intl.formatMessage(keys[(excersise as OffNoteExcersise).key])}</strong>,
+                        title: <b>{(excersise as OffNoteExcersise).title}</b>,
+                        instrument: <b>{intl.formatMessage(instruments[(excersise as OffNoteExcersise).instrument])}</b>,
+                        key: <b>{intl.formatMessage(keys[(excersise as OffNoteExcersise).key])}</b>,
                         br: <br />
                     }}
                 />

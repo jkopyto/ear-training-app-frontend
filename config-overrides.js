@@ -1,5 +1,4 @@
 const {
-    addBabelPlugin,
     getBabelLoader,
     babelInclude
 } = require("customize-cra")
@@ -11,13 +10,6 @@ module.exports = {
 
         config.optimization.splitChunks.chunks = () => false
         config.optimization.runtimeChunk = false
-
-        config = addBabelPlugin([
-            "react-intl",
-            {
-                messagesDir: "./src/intl/messages/"
-            }
-        ])(config)
 
         config.plugins.push(
             new webpack.optimize.MinChunkSizePlugin({
@@ -31,7 +23,11 @@ module.exports = {
 
         const babelLoader = getBabelLoader(config)
         babelLoader.options.cacheDirectory = false
-        babelInclude(["src"])
+        babelInclude(["src",
+            path.join(__dirname, "node_modules/react-intl"),
+            path.join(__dirname, "node_modules/intl-messageformat"),
+            path.join(__dirname, "node_modules/intl-messageformat-parser"),
+        ])
         return config
     }
 }

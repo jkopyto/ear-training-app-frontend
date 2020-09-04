@@ -1,10 +1,8 @@
 import React, { ReactNode, useEffect, useState } from 'react'
-import en from 'react-intl/locale-data/en'
-import pl from 'react-intl/locale-data/pl'
-import localeData from 'src/build/locales/data.json'
-import { IntlProvider, addLocaleData } from "react-intl"
+import localeData from 'src/__build/locales/data.json'
+import { IntlProvider } from "react-intl"
+import IntlPolyfillsProvider from './IntlPolyfillsProvider'
 
-addLocaleData([...en, ...pl])
 export type LangType = "en" | "pl"
 
 type Props = {
@@ -19,9 +17,11 @@ const LanguageProvider = ({ children, locale }: Props) => {
     },[locale])
     
     return (
-        <IntlProvider locale={`${locale}-${locale.toUpperCase()}`} messages={localeMessages} key={locale} >
-            {children}
-        </IntlProvider>
+        <IntlPolyfillsProvider>
+            <IntlProvider locale={`${locale}-${locale.toUpperCase()}`} messages={localeMessages} key={locale} >
+                {children}
+            </IntlProvider>
+        </IntlPolyfillsProvider>
     )
 }
 

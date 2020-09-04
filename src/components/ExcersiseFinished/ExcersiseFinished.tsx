@@ -2,16 +2,15 @@ import React from 'react'
 import { Button } from '@blueprintjs/core'
 import { RouteBuilder } from 'src/views/routes'
 import commonMessages from 'src/util/commonMessages'
-import { InjectedIntl, injectIntl, FormattedMessage } from 'react-intl'
+import { injectIntl, FormattedMessage, WrappedComponentProps } from 'react-intl'
 import { RouteComponentProps, withRouter } from 'react-router'
 import { AppState } from 'src/store'
 import { connect } from 'react-redux'
 
 type Props = {
-    intl: InjectedIntl
     score: number
     
-}& RouteComponentProps
+}& RouteComponentProps & WrappedComponentProps
 
 const ExcersiseFinished = ({intl, score, history}: Props) => (
     <div className= "i-excersise-finished">

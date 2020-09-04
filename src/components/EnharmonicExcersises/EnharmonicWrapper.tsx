@@ -9,7 +9,7 @@ const EnharmonicWrapper = ({sheetTitle, children}: Props) => {
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [file, setFile] = useState<any>(undefined)
 
-    function getSheetId() {
+    const getSheetId = useCallback(() => {
         const abortController = new AbortController()
         const signal = abortController.signal
         try {
@@ -35,7 +35,7 @@ const EnharmonicWrapper = ({sheetTitle, children}: Props) => {
         return function cleanup(){
             abortController.abort()
         }
-    }
+    }, [sheetTitle])
 
     function getSheetById(id:string) {
         try {

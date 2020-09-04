@@ -6,7 +6,7 @@ type Props = {
 }
 
 const ExcersiseWrapper = ({ children, className }: Props) => (
-    <div className={`i-excersise-wrapper m-grid m-grid--hor ${className}`}>
+    <div className={`i-excersise-wrapper m-grid m-grid--hor ${className || ""}`}>
         {children}
     </div>
 )
