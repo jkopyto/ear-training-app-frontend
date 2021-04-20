@@ -9,6 +9,13 @@ import Header from 'src/components/Header'
 import {excersiseTitles, excersiseDescriptions} from './tasks'
 import { injectIntl, WrappedComponentProps } from 'react-intl'
 
+/* <--ProjApkInt-->
+*
+*  Tworzę strukturę divów oraz renderuje header widoczny na każdej podstronie
+*  Renderuje także widok kart z zadaniami. Biblioteka react-intl na podstawie
+*  języka ustawionego przez użytkownika oraz przekazanych informacji wyświetla tekst
+*  adekwatny do języka
+*/
 const Dashboard = ({ match, intl}: RouteComponentProps & WrappedComponentProps) => (
     <div className= "m-grid i-dashboard-container">
         <Header />

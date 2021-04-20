@@ -1,6 +1,12 @@
 import Vex from 'vexflow'
 import { getClef } from './getClef'
 
+/* <--ProjApkInt-->
+*
+*  Cała metoda jest kompleksową adaptacją na potrzeby projektu biblioteki
+*  vexflow pozwalającej rysować partytury w przeglądarce
+*/
+
 const vexFlowRenderer = (notes, displayStyle, isAnswerGiven) => {
 
     if (displayStyle === "melodic"){

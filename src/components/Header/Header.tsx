@@ -13,6 +13,15 @@ type Props = {
     changeLang: (lang: LangType) => void
 }& RouteComponentProps
 
+/* <--ProjApkInt-->
+*
+*  Zawarta tutaj struktura divów opisuje strukturę nagłówka
+*  widocznego na każdej podstronie aplikacji. Zawiera się tutaj grafika
+*  klucza wiolinowego, której naciśnięcie wywołuje przekierowanie na stronę główną.
+*  Znajduje się tutaj także komponent wyświetalający dropdown z flagami, których
+*  naciśnięcie wyzwala zmianę języka. 
+*/
+
 const Header = ({lang, changeLang, location}: Props) => (
     <div className= "m-grid m-grid__item m-grid__item--top i-header">
         <div className= "m-grid m-grid__item--center m-grid--ver m-grid__item i-header__content">

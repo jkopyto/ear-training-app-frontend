@@ -13,6 +13,10 @@ const EnharmonicWrapper = ({sheetTitle, children}: Props) => {
         const abortController = new AbortController()
         const signal = abortController.signal
         try {
+            /* <--ProjApkInt-->
+            *
+            *  W tym miejscu pobierane są z backendu pliki XML zawierające strukturę partytury
+            */
             fetch(`${process.env.REACT_APP_API_URL}sheets/title/${sheetTitle}`, {
                 method: 'GET',
                 signal: signal,

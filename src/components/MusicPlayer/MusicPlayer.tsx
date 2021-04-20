@@ -16,6 +16,10 @@ const MusicPlayer = ({ title, showPlay, onAudioStop, backendTitle}: Props) => {
         async function getAudio() {
             setIsLoading(true)
             try {
+                /* <--ProjApkInt-->
+                *
+                *  W tym miejscu pobierane są z backendu id do odpowiednich plików dźwiękowych
+                */
                 fetch(`${process.env.REACT_APP_API_URL}tracks/title/${backendTitle}`, {
                     method: 'GET',
                     headers: {

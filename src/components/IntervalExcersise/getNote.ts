@@ -1,5 +1,10 @@
 import { NoteType } from "../@types/noteType"
 
+/* <--ProjApkInt-->
+*
+*  Obiekt mapujący odpowiednie dźwięki na liczby odpowiadające dźwiękom w bibliotece
+*  midi-sounds-react
+*/
 export const sounds = {
     "C1": 24,
     "C#1": 25,

@@ -5,6 +5,11 @@ type Props = {
     children: string | ReactNode
 } & IButtonProps
 
+/* <--ProjApkInt-->
+*
+*  Korzystając z bilbioteki blueprintjs, która jest design systemem,
+*  adaptuje w niej zawarty komponent button
+*/
 const CustomButton = ({
     className,
     children,
