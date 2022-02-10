@@ -10,7 +10,7 @@
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
     "midi-sounds-react": "^1.2.54",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "opensheetmusicdisplay": "^0.8.4",
     "prettier": "^2.1.1",
     "react": "^16.13.1",
